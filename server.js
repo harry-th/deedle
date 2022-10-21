@@ -56,21 +56,21 @@ app.get('/', (req, res) => {
   //req.session.userId
   res.render('index');
 });
-app.post('/login', (req,res) => {
+// app.post('/login', (req,res) => {
 
-});
-app.post('/register', (req,res) => {
+// });
+// app.post('/register', (req,res) => {
   
-});
-app.post('/:id', (res, res) => {
+// });
+// app.post('/:id', (res, res) => {
 
-})
-app.post('/:id/update', (res, res) => {
+// })
+// app.post('/:id/update', (res, res) => {
 
-})
-app.post('/:id/delete', (res, res) => {
+// })
+// app.post('/:id/delete', (res, res) => {
 
-})
+// })
 
 let pageInfo;
 app.get('/:id', (req, res) => {
