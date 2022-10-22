@@ -57,11 +57,14 @@ app.get('/', (req, res) => {
   const templateVars = {events:[]};
   // console.log(req.session.userId);
   if (req.session.userId) {
-    console.log('hello');
     eventQueries.getEvents().then((res) => {
-      console.log(res);
+      for (let event of res) {
+        templateVars.events.push(event.title);
+      }
+    }).then(() => {
+      res.render('index', templateVars);
     });
-    res.render('index', templateVars);
+    return;
   }
   res.render('index',templateVars);
 });

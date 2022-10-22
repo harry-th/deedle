@@ -17,9 +17,8 @@ router.post('/login', (request, response) => {
     for (let set of res) {
       console.log(set.email, set.password);
       if (set.email === email && set.password === password) {
-        console.log(set, 'logged in');
         request.session.userId = set.id;
-        // response.redirect('/');
+        response.redirect('/');
         return;
       }
     }
