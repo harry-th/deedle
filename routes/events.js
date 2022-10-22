@@ -12,8 +12,8 @@ const userQueries = require('../db/queries/events');
 
 router.get('/:id', (req, res) => {
   if (!req.params.id) {
-    res.status(404)
-    return
+    res.status(404);
+    return;
   }
   const event = userQueries.getEvents(req.params.id)
     .then(data => {
@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
             location: `${data.address}, ${data.city}, ${data.province}, ${data.post_code}, ${data.country}`, date: data.date
           }
         });
-    })
+    });
 });
 
 module.exports = router;
