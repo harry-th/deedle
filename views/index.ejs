@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <!-- LEFT FLOAT -->
+  <section id="leftBodyContainerMain">
+
+    <!-- LOGIN -->
+    <div class="loginContainer">
+      <form class="login" method="POST" action="/">
+        <p>Login</p>
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" name="loginEmail">
+        <label id="loginPassword" for="loginPassword">Password</label>
+        <input=type="password" name="loginPassword">
+          <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="registerContainer">
+      <form class="register" method="POST" action="/">
+        <p>Login</p>
+        <label for="registerEmail">Email</label>
+        <input id="registerEmail" type="email" name="registerEmail">
+        <label id="registerPassword" for="registerPassword">Password</label>
+        <input=type="password" name="registerPassword">
+          <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e_400x400.jpg">
+
+    <!-- CREATE EVENT -->
+    <div class="createEventContainer">
+      <h2>Please provide the details for your event</h2>
+      <form class="newEventForm">
+        <label for="title">What would you like to name your event?</label>
+        <input type="text" name="title">
+        <label for="location">Where will it be located?</label>
+        <input type="text" name="location">
+        <!-- Put a checkbox for physical location or virtual.
+        If virtual, have a new input drop down that takes a link
+        and asks the host to create a password for the event -->
+        <label for="date">When will it take place?</label>
+        <!-- Figure out how to put in the current date in value.
+          Input type "date" creates a calendar box the user can select from-->
+        <input type="date" name="date" value="">
+        <label for="startTime">When will the event start?</label>
+        <input type="time" name="startTime">
+        <label for="endTime">When will it end?</label>
+        <input type="time" name="endTime">
+      </form>
+
+      <!-- CONTACT INFO -->
+      <aside class="hostContactInput">
+        <h3>Host Contact Details</h3>
+        <!-- form action requires a route -->
+        <form class="hostContactForm" method="POST" action="">
+          <label for="hostFirstName">Please enter your first name</label>
+          <input type="text" name="hostFirstName">
+          <label for="hostSurname">Please enter your surname</label>
+          <input type="text" name="hostSurname">
+          <label for="phone">Please enter your phone number</label>
+          <input type="number" name="phone">
+          <label for="hostEmail">Please enter your email</label>
+          <input id="hostEmail" type="email" name="hostEmail">
+        </form>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RIGHT FLOAT -->
+  <section id="rightBodyContainerMain">
+
+    <!-- ABOUT  -->
+    <div class="aboutContainerRight">
+      <h1>Shmeckles</h1>
+      <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</h4>
+      <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
+    </div>
+
+    <!-- SCHEDULED EVENTS -->
+    <div class="existingHostEvents">
+      <h4>Your scheduled events</h4>
+      <ul class="scheduledEvents">
+        <li>
+          <a href="">Your event</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</body>
+
+</html>
