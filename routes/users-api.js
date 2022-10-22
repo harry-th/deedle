@@ -12,16 +12,28 @@ const userQueries = require('../db/queries/users');
 
 router.post('/login', (request, response) => {
   let {email, password} = request.body;
-  console.log(email, password);
   userQueries.getUsers().then((res) => {
     for (let set of res) {
-      console.log(set.email, set.password);
       if (set.email === email && set.password === password) {
         request.session.userId = set.id;
         response.redirect('/');
         return;
       }
     }
+  });
+});
+router.post('/register', (req, res) => {
+
+  let {email, password} = req.body;
+  userQueries.getUsers().then((res) => {
+    for (let set of res) {
+      if (set.email === email) {
+        return;
+      }
+    }
+    userQueries.createUser(email, password).then((id) => {
+      req.session.userId = id;
+    });
   });
 });
 

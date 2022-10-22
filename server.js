@@ -6,6 +6,7 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 let cookieSession = require('cookie-session');
+const bcrypt = require('bcryptjs');
 
 
 const PORT = process.env.PORT || 8080;
@@ -55,9 +56,8 @@ const eventQueries = require('./db/queries/events');
 
 app.get('/', (req, res) => {
   const templateVars = {events:[]};
-  // console.log(req.session.userId);
   if (req.session.userId) {
-    eventQueries.getEvents().then((res) => {
+    eventQueries.getEvents(req).then((res) => {
       for (let event of res) {
         templateVars.events.push(event.title);
       }
@@ -68,6 +68,7 @@ app.get('/', (req, res) => {
   }
   res.render('index',templateVars);
 });
+
 // app.get('/test', (req,res) => {
 //   res.redirect('/');
 // });
