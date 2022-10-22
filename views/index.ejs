@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/styles/layout.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
+
   <script defer src="/scripts/app.js"></script>
 </head>
 
@@ -23,12 +24,12 @@
 
     <!-- LOGIN -->
     <div class="loginContainer">
-      <form class="login" method="POST" action="/">
+      <form class="login" method="POST" action="/login">
         <p>Login</p>
-        <label for="loginEmail">Email</label>
-        <input id="loginEmail" type="email" name="loginEmail">
-        <label id="loginPassword" for="loginPassword">Password</label>
-        <input=type="password" name="loginPassword">
+        <label for="Email">Email</label>
+        <input id="loginEmail" type="email" name="email">
+        <label id="loginPassword" for="Password">Password</label>
+        <input type="password" name="password"/>
           <button type="submit">Submit</button>
       </form>
     </div>
@@ -36,7 +37,7 @@
     <!-- REGISTER -->
     <div class="registerContainer">
       <form class="register" method="POST" action="/">
-        <p>Login</p>
+        <p>Register</p>
         <label for="registerEmail">Email</label>
         <input id="registerEmail" type="email" name="registerEmail">
         <label id="registerPassword" for="registerPassword">Password</label>
@@ -45,7 +46,6 @@
       </form>
     </div>
 
-    <img src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e_400x400.jpg">
 
     <!-- CREATE EVENT -->
     <div class="createEventContainer">
@@ -102,12 +102,21 @@
     <div class="existingHostEvents">
       <h4>Your scheduled events</h4>
       <ul class="scheduledEvents">
-        <li>
-          <a href="">Your event</a>
-        </li>
+        <li>thing</li>
+          <% for (let item of events) { %>
+             <li><%= item %></li>
+         <% } %>
       </ul>
     </div>
   </section>
 </body>
+<script>
+  $(document).ready(function() {
+  // $('.existingHostEvents').hide()
+  $('.aboutContainerRight').hide()
+  $('.rightBodyContainerMain').hide()
+  $('.createEventContainer').hide()
+  });
+</script>
 
 </html>

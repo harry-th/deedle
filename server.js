@@ -22,7 +22,7 @@ app.use(cookieSession({
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   '/styles',
@@ -43,7 +43,7 @@ const usersRoutes = require('./routes/users');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
+app.use('/', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 // Note: mount other resources here, using the same pattern above
@@ -51,14 +51,26 @@ app.use('/users', usersRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+const eventQueries = require('./db/queries/events');
 
 app.get('/', (req, res) => {
-  //req.session.userId
-  res.render('index');
+  const templateVars = {events:[]};
+  // console.log(req.session.userId);
+  if (req.session.userId) {
+    console.log('hello');
+    eventQueries.getEvents().then((res) => {
+      console.log(res);
+    });
+    res.render('index', templateVars);
+  }
+  res.render('index',templateVars);
 });
-// app.post('/login', (req,res) => {
-
+// app.get('/test', (req,res) => {
+//   res.redirect('/');
 // });
+
+
+
 // app.post('/register', (req,res) => {
   
 // });
@@ -72,12 +84,12 @@ app.get('/', (req, res) => {
 
 // })
 
-let pageInfo;
-app.get('/:id', (req, res) => {
-  //query req.params(id)
-  //pull page info
-  res.render('event', pageInfo);
-});
+// let pageInfo;
+// app.get('/:id', (req, res) => {
+//   //query req.params(id)
+//   //pull page info
+//   res.render('event', pageInfo);
+// });
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
