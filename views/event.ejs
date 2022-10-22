@@ -19,26 +19,34 @@
 
 <body>
   <main>
-    <h1>Event Title</h1>
-    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat</h2>
+    <h1>
+      <%= event.title %>
+    </h1>
+    <h2>
+      <%= event.description %>
+    </h2>
     <!-- NEED TO FIND SOMETHING TO PUT HERE TO FLESH OUT THE AREA BETWEEN TITLE AND CONTACT INFO -->
     <section class="contactInfo">
       <ul>
-        <li>Host Name</li>
-        <li>Phone</li>
-        <li>Email</li>
+        <li>
+          <%= event.hostname %>
+        </li>
+        <li>
+          <%= event.phone %>
+        </li>
+        <li>
+          <%= event.email %>
+        </li>
       </ul>
     </section>
   </main>
   <aside class="eventDateAndLocation">
     <ul>
       <li>
-        Location
+        <%= event.location %>
       </li>
       <li>
-        Date
+        <%= event.date %>
       </li>
     </ul>
   </aside>

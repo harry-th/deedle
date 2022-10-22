@@ -22,7 +22,7 @@ CREATE TABLE events (
 -- Junction table to track emails of invitees
 CREATE TABLE event_attendees (
   id SERIAL PRIMARY KEY NOT NULL,
-  event_id INTEGER REFERENCES NOT NULL events(id),
+  event_id INTEGER REFERENCES events(id),
   attendee_email TEXT,
   is_attending BOOLEAN NOT NULL,
   UNIQUE (event_id, attendee_email)
