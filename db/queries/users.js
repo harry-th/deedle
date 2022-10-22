@@ -6,8 +6,10 @@ const getUsers = () => {
       return data.rows;
     });
 };
-const createUser = (email, password) => {
-  return db.query(`INSERT INTO users (email, password) 
-  values($1, $2) RETURNING id`, [email, password]);
+const createUser = (name, email, password) => {
+  return db.query(`INSERT INTO users (name, email, password) 
+  values($1, $2, $3) RETURNING id`, [name, email, password]).then(data => {
+    return data.rows;
+  });
 };
 module.exports = { getUsers, createUser };

@@ -57,12 +57,14 @@ const eventQueries = require('./db/queries/events');
 app.get('/', (req, res) => {
   const templateVars = {events:[]};
   if (req.session.userId) {
-    eventQueries.getEvents(req).then((res) => {
-      for (let event of res) {
-        templateVars.events.push(event.title);
+    eventQueries.getEvents(req.session.userId).then((res) => {
+      if (res.length > 0) {
+        for (let event of res) {
+          templateVars.events.push(event.title);
+        }
       }
     }).then(() => {
-      res.render('index', templateVars);
+      res.render('index',templateVars);
     });
     return;
   }

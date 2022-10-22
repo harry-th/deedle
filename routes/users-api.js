@@ -8,12 +8,14 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
+const bcrypt = require('bcryptjs');
 
 
 router.post('/login', (request, response) => {
   let {email, password} = request.body;
   userQueries.getUsers().then((res) => {
     for (let set of res) {
+      //will need to descrypt passwords
       if (set.email === email && set.password === password) {
         request.session.userId = set.id;
         response.redirect('/');
@@ -22,17 +24,23 @@ router.post('/login', (request, response) => {
     }
   });
 });
-router.post('/register', (req, res) => {
-
-  let {email, password} = req.body;
+router.post('/register', (request, response) => {
+  let {name, email, password} = request.body;
   userQueries.getUsers().then((res) => {
     for (let set of res) {
+      console.log(set.email === email);
       if (set.email === email) {
+        response.redirect('/');
         return;
       }
     }
-    userQueries.createUser(email, password).then((id) => {
-      req.session.userId = id;
+  }).then(() => {
+    password = bcrypt.hashSync(password, 10);
+    userQueries.createUser(name, email, password).then((id) => {
+      console.log('success', id);
+      request.session.userId = id[0].id;
+      response.redirect('/');
+      return;
     });
   });
 });
