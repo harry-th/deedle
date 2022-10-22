@@ -55,7 +55,7 @@ app.use('/users', usersRoutes);
 const eventQueries = require('./db/queries/events');
 
 app.get('/', (req, res) => {
-  const templateVars = {events:[]};
+  const templateVars = { events: [] };
   if (req.session.userId) {
     eventQueries.getEvents(req.session.userId).then((res) => {
       if (res.length > 0) {
@@ -64,11 +64,11 @@ app.get('/', (req, res) => {
         }
       }
     }).then(() => {
-      res.render('index',templateVars);
+      res.render('index', templateVars);
     });
     return;
   }
-  res.render('index',templateVars);
+  res.render('index', templateVars);
 });
 
 // app.get('/test', (req,res) => {
@@ -78,7 +78,7 @@ app.get('/', (req, res) => {
 
 
 // app.post('/register', (req,res) => {
-  
+
 // });
 // app.post('/:id', (res, res) => {
 
