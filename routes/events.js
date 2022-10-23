@@ -6,17 +6,24 @@
  */
 
 const express = require('express');
-const db = require('../db/connection');
 const router = express.Router();
-const userQueries = require('../db/queries/events');
+const eventQueries = require('../db/queries/events');
 
+router.get('/', (req, res) => {
+  res.redirect('/');
+});
 router.get('/:id', (req, res) => {
-  if (!req.params.id) {
-    res.status(404)
-    return
-  }
-  const event = userQueries.getEvents(req.params.id)
-    .then(data => {
+  // if (!req.params.id) {
+  //   res.status(404);
+  //   return;
+  // }
+  let {id} = req.params;
+  eventQueries.getEventsDetails(id)
+    .then((data) => {
+      if (!data) {
+        res.redirect('/');
+        return;
+      }
       res.render('event',
         {
           event:
@@ -25,7 +32,7 @@ router.get('/:id', (req, res) => {
             location: `${data.address}, ${data.city}, ${data.province}, ${data.post_code}, ${data.country}`, date: data.date
           }
         });
-    })
+    });
 });
 
 module.exports = router;
