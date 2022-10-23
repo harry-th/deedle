@@ -59,9 +59,10 @@ app.use('/events', eventsRoutes);
 const eventQueries = require('./db/queries/events');
 
 app.get('/', (req, res) => {
-  const templateVars = { events: [] };
+  const templateVars = { events: null };
   if (req.session.userId) {
     eventQueries.getEvents(req.session.userId).then((res) => {
+      templateVars.events = [];
       if (res.length > 0) {
         for (let event of res) {
           templateVars.events.push(event.title);

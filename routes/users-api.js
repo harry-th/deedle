@@ -22,13 +22,14 @@ router.post('/login', (request, response) => {
         return;
       }
     }
+    response.redirect('/');
   });
+  
 });
 router.post('/register', (request, response) => {
   let {name, email, password} = request.body;
   userQueries.getUsers().then((res) => {
     for (let set of res) {
-      console.log(set.email === email);
       if (set.email === email) {
         response.redirect('/');
         return;
@@ -37,7 +38,6 @@ router.post('/register', (request, response) => {
   }).then(() => {
     password = bcrypt.hashSync(password, 10);
     userQueries.createUser(name, email, password).then((id) => {
-      console.log('success', id);
       request.session.userId = id[0].id;
       response.redirect('/');
       return;

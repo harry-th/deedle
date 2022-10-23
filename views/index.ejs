@@ -21,9 +21,8 @@
 <body>
   <!-- LEFT FLOAT -->
   <section id="leftBodyContainerMain">
-
     <!-- LOGIN -->
-    <% if (!events.length) { %>
+    <% if (!events) { %>
       <div class="loginAndRegistration">
         <div class="loginContainer">
           <form class="login" method="POST" action="/login">
@@ -51,78 +50,87 @@
         </div>
       </div>
       <% } else { %>
-        <p>yo</p>
+        <p></p>
         <% } %>
           <!-- CREATE EVENT -->
-          <div class="createEventContainer">
-            <h2>Please provide the details for your event</h2>
-            <form class="newEventForm">
-              <label for="title">What would you like to name your event?</label>
-              <input type="text" name="title" />
-              <label for="location">Where will it be located?</label>
-              <input type="text" name="location" />
-              <!-- Put a checkbox for physical location or virtual.
+          <% if (events !==null) { %>
+            <div class="createEventContainer">
+              <h2>Please provide the details for your event</h2>
+              <form class="newEventForm">
+                <label for="title">What would you like to name your event?</label>
+                <input type="text" name="title" />
+                <label for="location">Where will it be located?</label>
+                <input type="text" name="location" />
+                <!-- Put a checkbox for physical location or virtual.
         If virtual, have a new input drop down that takes a link
         and asks the host to create a password for the event -->
-              <label for="date">When will it take place?</label>
-              <!-- Figure out how to put in the current date in value.
+                <label for="date">When will it take place?</label>
+                <!-- Figure out how to put in the current date in value.
           Input type "date" creates a calendar box the user can select from-->
-              <input type="date" name="date" value="" />
-              <label for="startTime">When will the event start?</label>
-              <input type="time" name="startTime" />
-              <label for="endTime">When will it end?</label>
-              <input type="time" name="endTime" />
-            </form>
-
-            <!-- CONTACT INFO -->
-            <aside class="hostContactInput">
-              <h3>Host Contact Details</h3>
-              <!-- form action requires a route -->
-              <form class="hostContactForm" method="POST" action="">
-                <label for="hostFirstName">Please enter your first name</label>
-                <input type="text" name="hostFirstName" />
-                <label for="hostSurname">Please enter your surname</label>
-                <input type="text" name="hostSurname" />
-                <label for="phone">Please enter your phone number</label>
-                <input type="number" name="phone" />
-                <label for="hostEmail">Please enter your email</label>
-                <input id="hostEmail" type="email" name="hostEmail" />
+                <input type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %> />
+                <label for="startTime">When will the event start?</label>
+                <input type="time" name="startTime" />
+                <label for="endTime">When will it end?</label>
+                <input type="time" name="endTime" />
+                <button> submit </button>
               </form>
-            </aside>
-          </div>
-  </section>
+            </div>
+            <% } else { %>
+              <p>nothing</p>
+              <% } %>
+                <!-- CONTACT INFO -->
+                <!-- <aside class="hostContactInput">
+        <h3>Host Contact Details</h3>
+        form action requires a route
+        <form class="hostContactForm" method="POST" action="">
+          <label for="hostFirstName">Please enter your first name</label>
+          <input type="text" name="hostFirstName" />
+          <label for="hostSurname">Please enter your surname</label>
+          <input type="text" name="hostSurname" />
+          <label for="phone">Please enter your phone number</label>
+          <input type="number" name="phone" />
+          <label for="hostEmail">Please enter your email</label>
+          <input id="hostEmail" type="email" name="hostEmail" />
+        </form>
+      </aside>
+  </section> -->
 
-  <!-- RIGHT FLOAT -->
-  <section id="rightBodyContainerMain">
+                <!-- RIGHT FLOAT -->
+                <section id="rightBodyContainerMain">
 
-    <!-- ABOUT  -->
-    <div class="aboutContainerRight">
-      <h1>Shmeckles</h1>
-      <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.</h4>
-      <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
-    </div>
+                  <!-- ABOUT  -->
+                  <div class="aboutContainerRight">
+                    <h1>Shmeckles</h1>
+                    <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                      labore et dolore
+                      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                      ex ea commodo
+                      consequat.</h4>
+                    <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
+                  </div>
 
-    <!-- SCHEDULED EVENTS -->
-    <div class="existingHostEvents">
-      <h4>Your scheduled events</h4>
-      <ul class="scheduledEvents">
-        <% for (let item of events) { %>
-          <li>
-            <%= item %>
-          </li>
-          <% } %>
-      </ul>
-    </div>
-  </section>
+                  <!-- SCHEDULED EVENTS -->
+                  <div class="existingHostEvents">
+                    <h4>Your scheduled events</h4>
+                    <ul class="scheduledEvents">
+                      <% if(events) { %>
+                        <% for (let item of events) { %>
+                          <li>
+                            <%= item %>
+                          </li>
+                          <% } %>
+                            <% } else { %>
+                              <p>list</p>
+                              <% } %>
+                    </ul>
+                  </div>
+                </section>
 </body>
 <script>
   $(document).ready(function () {
     // $('.existingHostEvents').hide()
     $('.aboutContainerRight').hide()
     $('.rightBodyContainerMain').hide()
-    $('.createEventContainer').hide()
   });
 </script>
 
