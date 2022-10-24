@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
   //   res.status(404);
   //   return;
   // }
-  let {id} = req.params;
+  let { id } = req.params;
   eventQueries.getEventsDetails(id)
     .then((data) => {
       if (!data) {
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
           event:
           {
             title: data.title, hostname: data.hostname, phone: data.phone, email: data.email, description: data.description,
-            location: `${data.address}, ${data.city}, ${data.province}, ${data.post_code}, ${data.country}`, date: data.date
+            address: data.address, city: data.city, province: data.province, post_code: data.post_code, country: data.country, date: data.date
           }
         });
     });

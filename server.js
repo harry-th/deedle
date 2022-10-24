@@ -69,11 +69,11 @@ app.get('/', (req, res) => {
         }
       }
     }).then(() => {
-      res.render('index',templateVars);
+      res.render('index', templateVars);
     });
     return;
   }
-  res.render('index',templateVars);
+  res.render('index', templateVars);
 });
 
 // app.get('/test', (req,res) => {
