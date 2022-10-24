@@ -72,14 +72,29 @@ app.post('/createEvent', (req,res) => {
   res.redirect(`/placeEvent?AuthToken=${accessToken}`);
 });
 
-app.get('/placeEvent', (req, res) => {
-  console.log(req.query);
-  jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    console.log(user);
-    if (err) return res.sendStatus(403);
-    else res.render('eventPlaceholder', user);
-  });
-});
+// app.get('/placeEvent', (req, res) => {
+//   let id;
+//   if (req.query.AuthToken) {
+//     let user = jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//       console.log(user);
+//       if (err) return console.log('fail'), res.sendStatus(403);
+//       else {
+//         return user;
+//       }
+//     });
+//     console.log(user);
+//     res.render('eventPlaceholder', user);
+//   }
+  
+// else {
+//   if (!req.session.userId) {
+//     req.session.user = {events:[id],contact: {name:undefined, email:undefined}};
+//   } else {
+//     req.session.id.events.push(id);
+//   }
+// }
+//   res.render();
+// });
 
 
 app.get('/', (req, res) => {

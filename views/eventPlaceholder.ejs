@@ -19,14 +19,17 @@
 <body>
   <main>
     <h1>
-      <%= title %>
+     <%= user.title ? user.title : '' %>
     </h1>
     <h2>
-      <%= description %>
+      <%= user.description ? user.description : '' %>
     </h2>
     <h3>
-        <%= email %>
+        <%= user.email ? user.email : '' %>
     </h3>
+    <h4> 
+        <%= guest.contact.name %>
+    </h4>
 </body>
 
 </html>
