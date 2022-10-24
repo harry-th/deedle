@@ -77,7 +77,7 @@ app.get('/placeEvent', (req, res) => {
   jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     console.log(user);
     if (err) return res.sendStatus(403);
-    else res.send('hello');
+    else res.render('eventPlaceholder', user);
   });
 });
 
