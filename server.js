@@ -7,7 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 let cookieSession = require('cookie-session');
 const bcrypt = require('bcryptjs');
-
+const jwt = require('jsonwebtoken');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -57,6 +57,30 @@ app.use('/events', eventsRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 const eventQueries = require('./db/queries/events');
+
+// jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+//   if (err) return res.sendStatus(403);
+//   req.user = user;
+//   next();
+// });
+
+app.post('/createEvent', (req,res) => {
+  let {email, title, description} = req.body;
+  // console.log(email, title, description);
+  const accessToken = jwt.sign({email, title, description}, process.env.ACCESS_TOKEN_SECRET);
+  // res.query = {authToken: accessToken};
+  res.redirect(`/placeEvent?AuthToken=${accessToken}`);
+});
+
+app.get('/placeEvent', (req, res) => {
+  console.log(req.query);
+  jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    console.log(user);
+    if (err) return res.sendStatus(403);
+    else res.send('hello');
+  });
+});
+
 
 app.get('/', (req, res) => {
   const templateVars = {events:null};

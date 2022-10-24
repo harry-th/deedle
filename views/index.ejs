@@ -19,8 +19,25 @@
 </head>
 
 <body>
+<div style="margin-bottom: 300px;">
+  <div class="createEventContainer">
+    <h2>Please provide the details for your event</h2>
+    <form class="newEventForm" method="post" action="/createEvent">
+      <p>email</p>
+      <input type="email" name="email" />
+      <p>title</p>
+      <label for="title"></label>
+      <input type="text" name="title" />
+      <p>description</p>
+     <label for="description"></label>
+     <input type="text" name="description" />
+      <button> submit </button>
+    </form>
+  </div>
+</div>
   <!-- LEFT FLOAT -->
   <section id="leftBodyContainerMain">
+   
     <!-- LOGIN -->
     <% if (!events) { %>
     <div class="loginAndRegistration">
@@ -127,6 +144,7 @@
   // $('.existingHostEvents').hide()
   $('.aboutContainerRight').hide()
   $('.rightBodyContainerMain').hide()
+  // $('.loginAndRegistration').hide()
   });
 </script>
 
