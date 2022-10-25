@@ -8,18 +8,30 @@
 //
 //.value() to append to the HTML element i need to format
 
-$document.ready(function () {
+$(document).ready(function () {
   $("#date").on("input", function () {
     let date = $(this).val().length
-    $eventDate = $("#startDate")
+    $eventDate = $("#eventStartDate")
     $eventDate.text(date)
   })
-  $("#startTime").on("input", function () {
+
+  $("#start").on("input", function () {
     let startTime = $(this).val().length
+    $eventStartTime = $("#eventStartTime")
+    $eventStartTime.text(startTime)
 
   })
-  $("#endTime").on("input", function () {
+  $("#end").on("input", function () {
     let endTime = $(this).val().length
+    $eventEndTime = $("#eventEndTime")
+    $eventEndTime.text(endTime)
+  })
 
+  $(".startHours").on('click', function (event) {
+    event.preventDefault()
+    const hours = `<option value="${generateHours()}">${generateHours()}</option>`
+    $('.startHours').append(hours)
   })
 })
+
+

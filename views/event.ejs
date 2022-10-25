@@ -19,63 +19,66 @@
 <%- include('partials/header') %>
 
   <body>
-    <main>
-      <div class="eventTitleContainer">
-        <h1>
-          <%= event.title %>
-        </h1>
-        <div class="eventDescription">
-          <p>
-            <%= event.description %>
-          </p>
-        </div>
-      </div>
-
-      <section class="contactInfo">
-        <ul>
-          <h4>Host Details</h4>
-          <li class="hostName">
-            <%= event.hostname %>
-          </li>
-          <li class="hostPhone">
-            <%= event.phone %>
-          </li>
-          <li class="hostEmail">
-            <%= event.email %>
-          </li>
-        </ul>
-      </section>
-    </main>
-
-    <aside class="eventDateAndLocation">
-      <%- include('partials/eventDetails') %>
-
-        <section class="inviteeResponse">
-          <p class="startDate">
-            <%= event.date %>
-          </p>
-          <div class="responseCheckmarks">
-            <!-- no label on checkmarks, just a green checkmark or a red X -->
-            <div class="checkyesContainer">
-              <form class="checkyes" method="POST" action="">
-                <button type="submit" class="checkyesButton" name="checkyes">Attending</button>
-              </form>
-            </div>
-            <div class="checknoContainer">
-              <form class="checkno" method="POST" action="">
-                <button type="submit" class="checknoButton" name="checkno">Not Attending</button>
-              </form>
-            </div>
+    <div class="wrapper">
+      <main>
+        <div class="eventTitleContainer">
+          <h1>
+            <%= event.title %>
+          </h1>
+          <div class="eventDescription">
+            <p>
+              <%= event.description %>
+            </p>
           </div>
-        </section>
+        </div>
 
-    </aside>
-    <!-- <section>
+        <section class="contactInfo">
+          <ul>
+            <h4>Host Details</h4>
+            <li class="hostName">
+              <%= event.hostname %>
+            </li>
+            <li class="hostPhone">
+              <%= event.phone %>
+            </li>
+            <li class="hostEmail">
+              <%= event.email %>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <aside class="eventDateAndLocation">
+        <%- include('partials/eventDetails') %>
+
+          <section class="inviteeResponse">
+            <ul class="eventDateAndTime">
+              <li id="eventStartDate"></li>
+              <li id="eventStartTime"></li>
+              <li id="eventEndDate"></li>
+            </ul>
+            <div class="responseCheckmarks">
+              <div class="checkyesContainer">
+                <form class="checkyes" method="POST" action="">
+                  <button type="submit" class="checkyesButton" name="checkyes">Attending</button>
+                </form>
+              </div>
+              <div class="checknoContainer">
+                <form class="checkno" method="POST" action="">
+                  <button type="submit" class="checknoButton" name="checkno">Not Attending</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+      </aside>
+      <!-- <section>
     <div class="inviteeComment">
       <h6>Invitee Name</h6>
       <p>Invitee Comment</p>
     </div>
   </section> -->
+    </div>
   </body>
 
 </html>

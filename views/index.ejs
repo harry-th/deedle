@@ -17,86 +17,99 @@
 
   <script defer src="/scripts/app.js"></script>
 </head>
+<%- include('partials/header') %>
 
-<body>
-<div style="margin-bottom: 300px;">
-  <div class="createEventContainer">
-    <h2>Please provide the details for your event</h2>
-    <form class="newEventForm" method="post" action="/createEvent">
-      <p>email</p>
-      <input type="email" name="email" />
-      <p>title</p>
-      <label for="title"></label>
-      <input type="text" name="title" />
-      <p>description</p>
-     <label for="description"></label>
-     <input type="text" name="description" />
-      <button> submit </button>
-    </form>
-  </div>
-</div>
-  <!-- LEFT FLOAT -->
-  <section id="leftBodyContainerMain">
-   
-    <!-- LOGIN -->
-    <% if (!events) { %>
-      <div class="loginAndRegistration">
-        <div class="loginContainer">
-          <form class="login" method="POST" action="/login">
-            <p>Login</p>
-            <label for="Email">Email</label>
-            <input id="loginEmail" type="email" name="email">
-            <label id="loginPassword" for="Password">Password</label>
-            <input type="password" name="password" />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+  <body>
+    <div class="wrapper">
+      <div class="createEventContainer">
+        <h2>Event Information</h2>
+        <form class="newEventForm" method="post" action="/createEvent">
 
-        <!-- REGISTER -->
-        <div class="registerContainer">
-          <form class="register" method="POST" action="/register">
-            <p>Register</p>
-            <label for="name">name</label>
+          <label for="title">Title</label>
+          <input type="text" name="title" />
+          <label for="description">Description</label>
+          <input type="text" name="description" />
+          <label for="location">Location</label>
+          <input type="text" name="location" />
+          <label for="date">Date</label>
+          <input id="date" type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %> />
+          <%- include('partials/timeSlots') %>
+
+            <h3>Your Information</h3>
+            <label for="name">Name</label>
             <input type="text" name="name" />
             <label for="email">Email</label>
-            <input id="registerEmail" type="email" name="email" />
-            <label id="registerPassword" for="password">Password</label>
-            <input type="password" name="password" />
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+            <input type="email" name="email" />
+            <label for="phone">Phone (Optional)</label>
+            <input type="number" name="phone" />
+
+            <button> Create your event! </button>
+        </form>
+
       </div>
-      <% } else { %>
-        <p></p>
-        <% } %>
-          <!-- CREATE EVENT -->
-          <% if (events !==null) { %>
-            <div class="createEventContainer">
-              <h2>Please provide the details for your event</h2>
-              <form class="newEventForm">
-                <label for="title">What would you like to name your event?</label>
-                <input type="text" name="title" />
-                <label for="location">Where will it be located?</label>
-                <input type="text" name="location" />
-                <!-- Put a checkbox for physical location or virtual.
-        If virtual, have a new input drop down that takes a link
-        and asks the host to create a password for the event -->
-                <label for="date">When will it take place?</label>
-                <!-- Figure out how to put in the current date in value.
-          Input type "date" creates a calendar box the user can select from-->
-                <input id="date" type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %> />
-                <label for="startTime">When will the event start?</label>
-                <input id="startTime" type="time" name="startTime" />
-                <label id="endTime" for="endTime">When will it end?</label>
-                <input type="time" name="endTime" />
-                <button> submit </button>
+      <!-- LEFT FLOAT -->
+      <section id="leftBodyContainerMain">
+
+        <!-- LOGIN -->
+        <% if (!events) { %>
+          <div class="loginAndRegistration">
+            <div class="loginContainer">
+              <form class="login" method="POST" action="/login">
+                <p>Login</p>
+                <label for="Email">Email</label>
+                <input id="loginEmail" type="email" name="email">
+                <label id="loginPassword" for="Password">Password</label>
+                <input type="password" name="password" />
+                <button type="submit">Submit</button>
               </form>
             </div>
-            <% } else { %>
-              <p>nothing</p>
-              <% } %>
-                <!-- CONTACT INFO -->
-                <!-- <aside class="hostContactInput">
+
+            <!-- REGISTER -->
+            <div class="registerContainer">
+              <form class="register" method="POST" action="/register">
+                <p>Register</p>
+                <label for="name">name</label>
+                <input type="text" name="name" />
+                <label for="email">Email</label>
+                <input id="registerEmail" type="email" name="email" />
+                <label id="registerPassword" for="password">Password</label>
+                <input type="password" name="password" />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+          <% } else { %>
+            <p></p>
+            <% } %>
+              <!-- CREATE EVENT -->
+              <% if (events !==null) { %>
+                <div class="createEventContainer">
+                  <h2>Please provide the details for your event</h2>
+                  <form class="newEventForm">
+                    <label for="title">What would you like to name your event?</label>
+                    <input type="text" name="title" />
+                    <label for="location">Where will it be located?</label>
+                    <input type="text" name="location" />
+                    <!-- Put a checkbox for physical location or virtual.
+        If virtual, have a new input drop down that takes a link
+        and asks the host to create a password for the event -->
+                    <label for="date">When will it take place?</label>
+                    <!-- Figure out how to put in the current date in value.
+          Input type "date" creates a calendar box the user can select from-->
+                    <input id="date" type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %>
+                    />
+                    <label for="startTime">When will the event start?</label>
+                    <input id="startTime" type="time" name="startTime" />
+                    <label id="endTime" for="endTime">When will it end?</label>
+                    <input type="time" name="endTime" />
+                    <button> submit </button>
+                  </form>
+                </div>
+                <% } else { %>
+                  <p>nothing</p>
+                  <% } %>
+                    <!-- CONTACT INFO -->
+                    <!-- <aside class="hostContactInput">
         <h3>Host Contact Details</h3>
         form action requires a route
         <form class="hostContactForm" method="POST" action="">
@@ -112,51 +125,47 @@
       </aside>
   </section> -->
 
-                <!-- RIGHT FLOAT -->
-                <section id="rightBodyContainerMain">
+                    <!-- RIGHT FLOAT -->
+                    <section id="rightBodyContainerMain">
 
-                  <!-- ABOUT  -->
-                  <div class="aboutContainerRight">
-                    <h1>Shmeckles</h1>
-                    <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore
-                      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo
-                      consequat.</h4>
-                    <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
-                  </div>
+                      <!-- ABOUT  -->
+                      <div class="aboutContainerRight">
+                        <h1>Shmeckles</h1>
+                        <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                          ut
+                          labore et dolore
+                          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                          aliquip
+                          ex ea commodo
+                          consequat.</h4>
+                        <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
+                      </div>
 
-                  <!-- SCHEDULED EVENTS -->
-                  <div class="existingHostEvents">
-                    <h4>Your scheduled events</h4>
-                    <ul class="scheduledEvents">
-                      <% if(events) { %>
-                        <% for (let item of events) { %>
-                          <li>
-                            <%= item %>
-                          </li>
-                          <% } %>
-                            <% } else { %>
-                              <p>list</p>
+                      <!-- SCHEDULED EVENTS -->
+                      <div class="existingHostEvents">
+                        <h4>Your scheduled events</h4>
+                        <ul class="scheduledEvents">
+                          <% if(events) { %>
+                            <% for (let item of events) { %>
+                              <li>
+                                <%= item %>
+                              </li>
                               <% } %>
-                    </ul>
-                  </div>
-                </section>
-</body>
-<script>
-<<<<<<< HEAD
-  $(document).ready(function () {
-    // $('.existingHostEvents').hide()
-    $('.aboutContainerRight').hide()
-    $('.rightBodyContainerMain').hide()
-=======
-  $(document).ready(function() {
-  // $('.existingHostEvents').hide()
-  $('.aboutContainerRight').hide()
-  $('.rightBodyContainerMain').hide()
-  // $('.loginAndRegistration').hide()
->>>>>>> serverTesting
-  });
-</script>
+                                <% } else { %>
+                                  <p>list</p>
+                                  <% } %>
+                        </ul>
+                      </div>
+                    </section>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      // $('.existingHostEvents').hide()
+      $('.aboutContainerRight').hide()
+      $('.rightBodyContainerMain').hide()
+      // $('.loginAndRegistration').hide()
+    });
+  </script>
 
 </html>

@@ -1,0 +1,46 @@
+<label for="startHours">Start Time in Hours</label>
+<select name="startHours" class="startHours">
+  <% for(var i=0; i <=23; i++) { %>
+    <option value='<%= i %>'>
+      <%= i %>
+    </option>
+    <% } %>
+</select>
+<label for="startMinutes">Start Time in Minutes</label>
+<select name="startMinutes" class="startMinutes">
+  <% for(var i=0; i <=45; i+=15) { %>
+    <option value='<%= i %>'>
+      <%= i %>
+    </option>
+    <% } %>
+</select>
+<label for="endHours">End Time in Hours</label>
+<select name="endHours" class="endHours">
+  <% for(var i=0; i <=23; i++) { %>
+    <option value='<%= i %>'>
+      <%= i %>
+    </option>
+    <% } %>
+</select>
+<label for="endMinutes">End Time in Minutes</label>
+<select name="endMinutes" class="endMinutes">
+  <% for(var i=0; i <=45; i+=15) { %>
+    <option value='<%= i %>'>
+      <%= i %>
+    </option>
+    <% } %>
+</select>
+
+<div>
+  <div id="timeSlotsList"></div>
+  <button class="addMoreTimes">Add more time slots?</button>
+</div>
+
+<script>
+  $(".addMoreTimes").on('click', function (event) {
+    event.preventDefault()
+    const time = '<p>New Option</p><label for="startHours">Start Time in Hours</label><select name="startHours" class="startHours"><% for(var i=0; i <=23; i++) { %><option value=" <%= i %> "><%= i %></option><% } %></select><label for="startMinutes">Start Time in Minutes</label><select name="startMinutes" class="startMinutes"><% for(var i=0; i <=45; i+=15) { %><option value="<%= i %>"><%= i %></option><% } %></select><label for="endHours">End Time in Hours</label><select name="endHours" class="endHours"><% for(var i=0; i <=23; i++) { %><option value="<%= i %>"><%= i %></option><% } %></select><label for="endMinutes">End Time in Minutes</label><select name="endMinutes" class="endMinutes"><% for(var i=0; i <=45; i+=15) { %><option value="<%= i %>"><%= i %></option><% } %></select>'
+    $("#timeSlotsList").append(time);
+    return false
+  });
+</script>
