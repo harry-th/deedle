@@ -9,6 +9,7 @@ let cookieSession = require('cookie-session');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -57,7 +58,7 @@ app.use('/events', eventsRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 const eventQueries = require('./db/queries/events');
-
+const {makeId} = require('./helper');
 // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
 //   if (err) return res.sendStatus(403);
 //   req.user = user;
@@ -65,11 +66,13 @@ const eventQueries = require('./db/queries/events');
 // });
 
 app.post('/createEvent', (req,res) => {
-  let {email, title, description} = req.body;
+  let {name, email, title, description} = req.body;
   // console.log(email, title, description);
-  const accessToken = jwt.sign({email, title, description}, process.env.ACCESS_TOKEN_SECRET);
+  let parameter = makeId();
+  eventQueries.createEvent(parameter, title, description);
+  const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
   // res.query = {authToken: accessToken};
-  res.redirect(`/placeEvent?AuthToken=${accessToken}`);
+  res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
 });
 
 // app.get('/placeEvent', (req, res) => {

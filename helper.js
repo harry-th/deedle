@@ -9,5 +9,4 @@ const makeId = function() {
   }
   return result;
 };
-console.log(makeId());
 module.exports = { makeId };
