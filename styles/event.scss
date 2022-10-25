@@ -4,7 +4,7 @@ $forest: #10534b; //logo
 $sleek-grey: #828282; //boxes
 $off-white: #f5f5f5;
 $mint-cream: #F5FFFA;
-
+//header partial
 header {
   width: 100%;
   margin-bottom: 4%;
@@ -55,33 +55,31 @@ main {
 .eventDescription {
   padding: 12px 20px;
   margin-top: 20px;
+  p {
+    background-color: $sleek-grey;
+    border-radius: 14px;
+    padding: 8px;
+    font-style: italic;
+    color: $off-white;
+  }
 }
 
-.eventDescription p {
-  background-color: $sleek-grey;
-  border-radius: 14px;
-  padding: 8px;
-  font-style: italic;
-  color: $off-white;
-}
 
 .contactInfo {
   border: solid green 1px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    li {
+      padding: 6px 0px 6px 10px;
+    }
+  }
+  h4 {
+    align-items: center;
+  }
 }
 
-.contactInfo ul {
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-}
-
-.contactInfo h4 {
-  align-items: center;
-}
-
-.contactInfo li {
-  padding: 6px 0px 6px 10px;
-}
 
 .eventDateAndLocation {
   float: right;
@@ -108,19 +106,17 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.locationDetails ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 8px;
-  background-color: $sleek-grey;
-  border-radius: 14px;
-}
-
-.locationDetails li {
-  padding: 4px 0px;
-  color: $off-white;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 8px;
+    background-color: $sleek-grey;
+    border-radius: 14px;
+    li {
+      padding: 4px 0px;
+      color: $off-white;
+    }
+  }
 }
 
 .inviteeResponse {
@@ -142,40 +138,45 @@ main {
   justify-content: center;
   align-items: center;
   height: 50%;
+  .checkyes {
+    width: 100%;
+    height: 100%;
+  }
+  .checkyesButton {
+    width: 100%;
+    height: 100%;
+    background-color: darkseagreen;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
 }
-
-.checkyes {
-  width: 100%;
-  height: 100%;
-}
-
-.checkyesButton {
-  width: 100%;
-  height: 100%;
-  background-color: darkseagreen;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.checkno {
-  width: 100%;
-  height: 100%;
-}
-
-.checknoButton {
-  width: 100%;
-  height: 100%;
-  background-color: tomato;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
-
 .checknoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50%;
+  .checknoButton {
+    width: 100%;
+    height: 100%;
+    background-color: tomato;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .checkno {
+    width: 100%;
+    height: 100%;
+  }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 // .eventDateAndLocation ul {
