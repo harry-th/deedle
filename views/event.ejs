@@ -17,17 +17,16 @@
   <script defer src="/scripts/app.js"></script>
 </head>
   <body>
-    <div class="wrapper">
-      <main>
-        <div class="eventTitleContainer">
-          <h1>
-            <%= event.title %>
-          </h1>
-          <div class="eventDescription">
-            <p>
-              <%= event.description %>
-            </p>
-          </div>
+<%- include('partials/header') %>
+    <main>
+      <div class="eventTitleContainer">
+        <h1>
+          <%= event.title %>
+        </h1>
+        <div class="eventDescription">
+          <p>
+            <%= event.description %>
+          </p>
         </div>
 
         <section class="contactInfo">

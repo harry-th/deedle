@@ -58,6 +58,8 @@ app.use('/events', eventsRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 const eventQueries = require('./db/queries/events');
+const eventTimesQueries = require('./db/queries/eventTimes');
+
 const {makeId} = require('./helper');
 // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
 //   if (err) return res.sendStatus(403);
@@ -65,56 +67,38 @@ const {makeId} = require('./helper');
 //   next();
 // });
 
-app.post('/createEvent', (req,res) => {
-  let {name, email, title, description} = req.body;
+app.post('/createEvent', (req, res) => {
+  let {name, email, title, description, location, dateStart, dateEnd} = req.body;
+  console.log(name, email, title, description, location);
   // console.log(email, title, description);
   let parameter = makeId();
-  eventQueries.createEvent(parameter, title, description);
-  const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
+  eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
+    eventTimesQueries.createEventTimes(id.id,dateStart,dateEnd).then((data) => {
+      console.log(data.rows[0]);
+    });
+  });
+  // const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
   // res.query = {authToken: accessToken};
-  res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
+  // res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
 });
 
-// app.get('/placeEvent', (req, res) => {
-//   let id;
-//   if (req.query.AuthToken) {
-//     let user = jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//       console.log(user);
-//       if (err) return console.log('fail'), res.sendStatus(403);
-//       else {
-//         return user;
-//       }
-//     });
-//     console.log(user);
-//     res.render('eventPlaceholder', user);
-//   }
-  
-// else {
-//   if (!req.session.userId) {
-//     req.session.user = {events:[id],contact: {name:undefined, email:undefined}};
-//   } else {
-//     req.session.id.events.push(id);
-//   }
-// }
-//   res.render();
-// });
 
 
 app.get('/', (req, res) => {
   const templateVars = { events: null };
-  if (req.session.userId) {
-    eventQueries.getEvents(req.session.userId).then((res) => {
-      templateVars.events = [];
-      if (res.length > 0) {
-        for (let event of res) {
-          templateVars.events.push(event.title);
-        }
-      }
-    }).then(() => {
-      res.render('index', templateVars);
-    });
-    return;
-  }
+  // if (req.session.userId) {
+  //   eventQueries.getEvents(req.session.userId).then((res) => {
+  //     templateVars.events = [];
+  //     if (res.length > 0) {
+  //       for (let event of res) {
+  //         templateVars.events.push(event.title);
+  //       }
+  //     }
+  //   }).then(() => {
+  //     res.render('index', templateVars);
+  //   });
+  //   return;
+  // }
   res.render('index', templateVars);
 });
 
