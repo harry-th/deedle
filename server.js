@@ -66,7 +66,16 @@ const {makeId} = require('./helper');
 //   req.user = user;
 //   next();
 // });
+app.post('createUser', (req,res) => {
+  /*
+  use req.body to set cookies
+  add invitee with query
+  add tables for agreed upon dates
+MAIN PAGE
+query invitees_dates where true display true else false
 
+  */
+});
 app.post('/createEvent', (req, res) => {
   let dates = [];
   let {name, email, title, description, location} = req.body;
