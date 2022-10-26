@@ -5,6 +5,10 @@ $mint-cream: #F5FFFA;
 $redButton: tomato;
 $greenButton: darkseagreen;
 
+* {
+  box-sizing: border-box;
+}
+
 header {
   width: 100%;
   margin-bottom: 4%;
@@ -38,184 +42,229 @@ body {
   font-family: 'Zilla Slab', serif;
 }
 
-.wrapper {
-  margin-right: 2%;
-  margin-left: 2%;
-  max-width: 1300px;
-  padding-right: 10px;
-  padding-left: 10px;
-  margin-top: 200px;
-}
-
-main {
-  float: left;
-  width: 55%;
-  margin-left: 5%;
-  display: flex;
-  flex-direction: column;
-  background-color: $mint-cream;
-  border-radius: 25px;
-}
-
-.eventTitleContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.eventDescription {
-  padding: 12px 20px;
-  margin-top: 20px;
-
-  p {
-    background-color: $sleek-grey;
-    border-radius: 14px;
-    padding: 8px;
-    font-style: italic;
-    color: $off-white;
-  }
-}
-
-
-.contactInfo {
-  border: solid green 1px;
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-
-    li {
-      padding: 6px 0px 6px 10px;
-    }
-  }
-
-  h4 {
-    align-items: center;
-  }
-}
-
-
-.eventDateAndLocation {
-  float: right;
-  width: 30%;
-  margin-right: 5%;
-  margin-left: 5%;
-  display: flex;
-  flex-direction: column;
-  background-color: $mint-cream;
-  border-radius: 25px;
-}
-
-.locationContainer {
-  //see views/partials/eventDetails.ejs
-}
-
-.detailsTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.locationDetails {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 8px;
-    background-color: $sleek-grey;
-    border-radius: 14px;
-
-    li {
-      padding: 4px 0px;
-      color: $off-white;
-    }
-  }
-}
-
-.inviteeResponse {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 200px;
-}
-
-.responseCheckmarks {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
-.checkyesContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
-
-  .checkyes {
-    width: 100%;
-    height: 100%;
-  }
-
-  .checkyesButton {
-    width: 100%;
-    height: 100%;
-    background-color: darkseagreen;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-}
-
-.checknoContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
-
-  .checknoButton {
-    width: 100%;
-    height: 100%;
-    background-color: tomato;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
-
-  .checkno {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// .eventDateAndLocation ul {
-//   list-style-type: none;
-//   display: flex;
-//   flex-direction: column;
+// .wrapper {
+//   margin-right: 2%;
+//   margin-left: 2%;
+//   max-width: 1300px;
+//   padding-right: 10px;
+//   padding-left: 10px;
+//   margin-top: 200px;
 // }
 
-// .eventDateAndLocation h4 {
+// main {
+//   float: left;
+//   width: 55%;
+//   margin-left: 5%;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: $mint-cream;
+//   border-radius: 25px;
+// }
+
+// .eventTitleContainer {
+//   display: flex;
+//   flex-direction: column;
 //   align-items: center;
 // }
 
-// .eventDateAndLocation li {
-//   padding: 6px 0px 6px 10px;
+// .eventDescription {
+//   padding: 12px 20px;
+//   margin-top: 20px;
+
+//   p {
+//     background-color: $sleek-grey;
+//     border-radius: 14px;
+//     padding: 8px;
+//     font-style: italic;
+//     color: $off-white;
+//   }
+// }
+
+
+// .contactInfo {
+//   border: solid green 1px;
+
+//   ul {
+//     display: flex;
+//     flex-direction: column;
+//     list-style-type: none;
+
+//     li {
+//       padding: 6px 0px 6px 10px;
+//     }
+//   }
+
+//   h4 {
+//     align-items: center;
+//   }
+// }
+
+
+// .eventDateAndLocation {
+//   float: right;
+//   width: 30%;
+//   margin-right: 5%;
+//   margin-left: 5%;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: $mint-cream;
+//   border-radius: 25px;
+// }
+
+// .locationContainer {
+//   //see views/partials/eventDetails.ejs
+// }
+
+// .detailsTitle {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .locationDetails {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   ul {
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 8px;
+//     background-color: $sleek-grey;
+//     border-radius: 14px;
+
+//     li {
+//       padding: 4px 0px;
+//       color: $off-white;
+//     }
+//   }
 // }
 
 // .inviteeResponse {
-//   border: solid purple 1px;
-//   float: left;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   height: 200px;
 // }
+
+// .eventDateAndTime {
+//   display: flex;
+//   flex-direction: column;
+//   list-style-type: none;
+//   padding-left: 0px;
+// }
+
+// .responseCheckmarks {
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .checkyesContainer {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 50%;
+
+//   .checkyes {
+//     width: 100%;
+//     height: 100%;
+//   }
+
+//   .checkyesButton {
+//     width: 100%;
+//     height: 100%;
+//     background-color: darkseagreen;
+//     border-top-left-radius: 12px;
+//     border-top-right-radius: 12px;
+//   }
+// }
+
+// .checknoContainer {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 50%;
+
+//   .checknoButton {
+//     width: 100%;
+//     height: 100%;
+//     background-color: tomato;
+//     border-bottom-left-radius: 12px;
+//     border-bottom-right-radius: 12px;
+//   }
+
+//   .checkno {
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
+///////////////////////////////
+/// ///////////////////////////////
+/// ///////////////////////////////
+/// ///////////////////////////////
+/// ///////////////////////////////
+.eventsPage {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 6rem;
+
+  .eventsPage__top {
+    display: flex;
+    min-height: 10px;
+    border: solid red 1px;
+    margin-top: 160px;
+    justify-content: space-between;
+
+    .eventsPage__top__left {
+      width: calc(50% - (40px / 2));
+      border: solid blue 1px;
+      border-radius: 25px;
+      background-color: $mint-cream;
+      text-align: center;
+
+      .eventsPage__top__left__eventDetails {
+        border: solid green 1px;
+        padding: 6px;
+
+
+        .eventsPage__top__left__eventDetails__title {}
+
+        .eventsPage__top__left__eventDetails__description {}
+
+        .eventsPage__top__left__eventDetails__contact {
+          .eventsPage__top__left__eventDetails__contact__item {}
+        }
+
+      }
+
+    }
+
+    .eventsPage__top__right {
+      width: calc(50% - (40px / 2));
+      border: solid green 1px;
+      background-color: $mint-cream;
+      border-radius: 25px;
+      padding: 6px;
+
+      .eventsPage__top__right__location {
+        .eventsPage__top__right__location__title {}
+
+        .eventsPage__top__right__location__details {
+          .eventsPage__top__right__location__details__list {
+            .eventsPage__top__right__location__details__list__item {}
+          }
+        }
+      }
+    }
+
+  }
+
+  .eventsPage__bottom {
+    min-height: 200px;
+    width: 100%;
+    border: solid purple 1px;
+  }
+}

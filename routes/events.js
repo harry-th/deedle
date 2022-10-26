@@ -9,6 +9,8 @@ const express = require('express');
 const router = express.Router();
 const eventQueries = require('../db/queries/events');
 const jwt = require('jsonwebtoken');
+const eventTimesQueries = require('../db/queries/eventTimes');
+const moment = require('moment');
 
 
 
@@ -18,7 +20,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   let { id } = req.params;
-
   if (req.query.AuthToken) {
     jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return console.log('fail'), res.sendStatus(403);
@@ -28,25 +29,36 @@ router.get('/:id', (req, res) => {
     });
   } else {
     if (!req.session.userId) {
-      req.session.userId = {events:[id], contact: {name:undefined, email:undefined}};
+      req.session.userId = { events: [id], contact: { name: undefined, email: undefined } };
     } else if (!req.session.userId.events.includes(id)) {
       req.session.userId.events.push(id);
     }
   }
+  //need to find a way to get the eventid by userid
+
   eventQueries.getEventsDetails(id)
     .then((data) => {
       if (!data) {
         res.redirect('/');
         return;
       }
-      res.render('eventPlaceholder',
-        {
-          event:
-          {
-            title: data.title, description: data.description,
-          },
-          user: req.user,
-          guest: req.session.userId
+      eventTimesQueries.getEventTimesByEventId(data.id)
+        .then((eventTimesData) => {
+          res.render('event',
+            {
+              eventTimes: eventTimesData.map((time) => ({
+                startDate: moment(time.start_time).format('MMMM Do YYYY'),
+                endDate: moment(time.end_time).format('MMMM Do YYYY'),
+                startTime: moment(time.start_time).format('h:mm:ss a'),
+                endTime: moment(time.end_time).format('h:mm:ss a')
+              })),
+              event:
+              {
+                title: data.title, description: data.description,
+              },
+              user: req.user,
+              guest: req.session.userId,
+            });
         });
     });
 });
@@ -55,7 +67,7 @@ router.get('/:id', (req, res) => {
 
 // router.get('/placeEvent', (req, res) => {
 //   let id;
-  
+
 // });
 // event:
 // {
