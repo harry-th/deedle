@@ -66,13 +66,18 @@ const {makeId} = require('./helper');
 //   req.user = user;
 //   next();
 // });
-app.post('/createRoute', (req,res) => {
-  let {name, email} = req.body;
-});
+
 app.post('/createEvent', (req, res) => {
   console.log('onroute form',req.body);
-  let {name, email, title, description, location, dates} = req.body;
-  console.log(name, email, title, description, location, dates);
+  let dates = [];
+  let {name, email, title, description, location} = req.body;
+  for (let item in req.body) {
+    if (item.startsWith('dateStart')) {
+      let end = item[item.length - 1] !== 't' ? 'dateEnd' + item[item.length - 1] : 'dateEnd';
+      dates.push({[item]: req.body[item], [end]:req.body[end]});
+    }
+  }
+  console.log(dates);
   let parameter = makeId();
   if (dates) {
     eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
@@ -80,7 +85,6 @@ app.post('/createEvent', (req, res) => {
     });
   }
   const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
-
   res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
 });
 
