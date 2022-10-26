@@ -89,10 +89,12 @@ app.post('/createEvent', (req, res) => {
   if (dates) {
     eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
       eventTimesQueries.createEventTimes(id.id,dates);
+      
+      const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
+      res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
     });
   }
-  const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
-  res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
+  
 });
 
 
