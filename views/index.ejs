@@ -27,9 +27,9 @@
 
   <body>
     <div class="wrapper">
-      <div class="createEventContainer" method="post" action="/createEvent" >
+      <div class="createEventContainer" >
         <h2>Event Information</h2>
-        <form class="newEventForm" >
+        <form class="newEventForm"  method="post" action="/createEvent">
           <h3>Your Information</h3>
           <label for="name">Name</label>
           <input type="text" name="name" require\ />
@@ -153,24 +153,6 @@
                 $('.timeSlots').append(newHtml)
                 count +=1
               })
-              $('.newEventForm').on('submit', function(e) {
-                // e.preventDefault()
-                console.log('hello')
-                let data = {};
-                let form = $(this).serializeArray()
-                console.log(form.slice(6, form.length-1))
-                for(let item of form.slice(0, 6)) {
-                  data[item.name] = item.value
-                }
-                data.dates=[]
-                for(let i=6; i<form.length; i+=2) {
-                  data.dates.push({[form[i].name]: form[i].value,[form[i+1].name]: form[i+1].value})
-                }
-                console.log(data)
-                $.post('/createEvent', data)
-              })
-            
-
       // $('.existingHostEvents').hide()
       $('.aboutContainerRight').hide()
       $('.rightBodyContainerMain').hide()
