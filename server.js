@@ -24,7 +24,7 @@ app.use(cookieSession({
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   '/styles',
@@ -70,17 +70,16 @@ const {makeId} = require('./helper');
 app.post('/createEvent', (req, res) => {
   console.log('onroute form',req.body);
   let {name, email, title, description, location, dates} = req.body;
-  // console.log(name, email, title, description, location, dates);
+  console.log(name, email, title, description, location, dates);
   let parameter = makeId();
   if (dates) {
     eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
       eventTimesQueries.createEventTimes(id.id,dates);
     });
   }
-  if (!dates) {
-    const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
-    return res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
-  }
+  const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
+
+  res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
 });
 
 

@@ -27,9 +27,9 @@
 
   <body>
     <div class="wrapper">
-      <div class="createEventContainer" post="method" action="/createEvent">
+      <div class="createEventContainer" method="post" action="/createEvent" >
         <h2>Event Information</h2>
-        <form class="newEventForm">
+        <form class="newEventForm" >
           <h3>Your Information</h3>
           <label for="name">Name</label>
           <input type="text" name="name" require\ />
@@ -154,7 +154,8 @@
                 count +=1
               })
               $('.newEventForm').on('submit', function(e) {
-                e.preventDefault()
+                // e.preventDefault()
+                console.log('hello')
                 let data = {};
                 let form = $(this).serializeArray()
                 console.log(form.slice(6, form.length-1))
@@ -167,7 +168,6 @@
                 }
                 console.log(data)
                 $.post('/createEvent', data)
-                
               })
             
 
