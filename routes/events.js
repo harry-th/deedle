@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
         res.redirect('/');
         return;
       }
-      res.render('event',
+      res.render('eventPlaceholder',
         {
           event:
           {
