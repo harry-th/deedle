@@ -10,6 +10,8 @@ header {
   margin-bottom: 4%;
   height: 6rem;
   background-color: $sleek-grey;
+  position: fixed;
+  top: 0;
 
   .material-icons {
     color: $mint-cream;
@@ -39,6 +41,7 @@ body {
     max-width: 1300px;
     padding-right: 10px;
     padding-left: 10px;
+    margin-top: 200px;
   }
 
   input {

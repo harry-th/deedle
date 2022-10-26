@@ -17,33 +17,35 @@
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
-  <body>
-<%- include('partials/header') %>
-    <main>
-      <div class="eventTitleContainer">
-        <h1>
-          <%= event.title %>
-        </h1>
-        <div class="eventDescription">
-          <p>
-            <%= event.description %>
-          </p>
-        </div>
 
-        <section class="contactInfo">
-          <ul>
-            <h4>Host Details</h4>
-            <li class="hostName">
-              <%= event.hostname %>
-            </li>
-            <li class="hostPhone">
-              <%= event.phone %>
-            </li>
-            <li class="hostEmail">
-              <%= event.email %>
-            </li>
-          </ul>
-        </section>
+<body>
+  <%- include('partials/header') %>
+    <div class="wrapper">
+      <main>
+        <div class="eventTitleContainer">
+          <h1>
+            <%= event.title %>
+          </h1>
+          <div class="eventDescription">
+            <p>
+              <%= event.description %>
+            </p>
+          </div>
+
+          <section class="contactInfo">
+            <ul>
+              <h4>Host Details</h4>
+              <li class="hostName">
+                <%= event.hostname %>
+              </li>
+              <li class="hostPhone">
+                <%= event.phone %>
+              </li>
+              <li class="hostEmail">
+                <%= event.email %>
+              </li>
+            </ul>
+          </section>
       </main>
 
       <aside class="eventDateAndLocation">
@@ -67,15 +69,16 @@
                 </form>
               </div>
             </div>
-          </div>
+    </div>
 
-        </section>
+    </section>
     </aside>
     <section>
       <div>
         HELLO
       </div>
     </section>
-  </body>
+    </div>
+</body>
 
 </html>
