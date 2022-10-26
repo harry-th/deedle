@@ -68,18 +68,19 @@ const {makeId} = require('./helper');
 // });
 
 app.post('/createEvent', (req, res) => {
-  let {name, email, title, description, location, dateStart, dateEnd} = req.body;
-  console.log(name, email, title, description, location);
-  // console.log(email, title, description);
+  console.log('onroute form',req.body);
+  let {name, email, title, description, location, dates} = req.body;
+  // console.log(name, email, title, description, location, dates);
   let parameter = makeId();
-  eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
-    eventTimesQueries.createEventTimes(id.id,dateStart,dateEnd).then((data) => {
-      console.log(data.rows[0]);
+  if (dates) {
+    eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
+      eventTimesQueries.createEventTimes(id.id,dates);
     });
-  });
-  // const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
-  // res.query = {authToken: accessToken};
-  // res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
+  }
+  if (!dates) {
+    const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
+    return res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
+  }
 });
 
 

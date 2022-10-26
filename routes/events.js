@@ -33,8 +33,6 @@ router.get('/:id', (req, res) => {
       req.session.userId.events.push(id);
     }
   }
-  req.session.userId.contact.name = 'harry';
-  console.log('hello',req.session.userId);
   eventQueries.getEventsDetails(id)
     .then((data) => {
       if (!data) {
