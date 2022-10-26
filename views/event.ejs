@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
@@ -53,9 +54,20 @@
 
           <section class="inviteeResponse">
             <ul class="eventDateAndTime">
-              <li id="eventStartDate"></li>
-              <li id="eventStartTime"></li>
-              <li id="eventEndDate"></li>
+              <% for(let time of eventTimes) { %>
+                <li class="startDate">
+                  <%= time.startDate%>
+                </li>
+                <li class="endDate">
+                  <%= time.endDate %>
+                </li>
+                <li class="startTime">
+                  <%= time.startTime %>
+                </li>
+                <li class="endTime">
+                  <%= time.endTime %>
+                </li>
+                <% } %>
             </ul>
             <div class="responseCheckmarks">
               <div class="checkyesContainer">
@@ -73,11 +85,6 @@
 
     </section>
     </aside>
-    <section>
-      <div>
-        HELLO
-      </div>
-    </section>
     </div>
 </body>
 

@@ -27,14 +27,14 @@
 
   <body>
     <div class="wrapper">
-      <div class="createEventContainer" >
-        <form class="newEventForm"  method="post" action="/createEvent">
+      <div class="createEventContainer">
+        <form class="newEventForm" method="post" action="/createEvent">
           <h3>Your Information</h3>
           <label for="name">Name</label>
           <input type="text" name="name" require\ />
           <label for="email">Email</label>
           <input type="email" name="email" required />
-        
+
           <button> Create your event! </button>
         </form>
 
@@ -44,16 +44,16 @@
 
 
 
-      <div class="createEventContainer1" >
+      <div class="createEventContainer1">
         <h2>Event Information</h2>
-        <form class="newEventForm"  method="post" action="/createEvent">
+        <form class="newEventForm" method="post" action="/createEvent">
           <h3>Your Information</h3>
           <label for="name">Name</label>
-          <input type="text" name="name" require\ />
+          <input type="text" name="name" required />
           <label for="email">Email</label>
           <input type="email" name="email" required />
           <label for="phone">Phone (Optional)</label>
-          <input type="number" name="phone" />
+          <input type="text" name="phone" />
 
           <label for="title">Title</label>
           <input type="text" name="title" required />
@@ -64,7 +64,7 @@
           <!-- <label for="date">Date</label> -->
           <!-- <input id="date" type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %> /> -->
           <div id="timeSelect">
-          <label for="dateStart">Date start</label>
+            <label for="dateStart">Date start</label>
             <input type="datetime-local" name="dateStart" required>
             <label for="dateEnd">Date end</label>
             <input type="datetime-local" name="dateEnd" required>
@@ -150,22 +150,22 @@
   <script>
     $(document).ready(function () {
       let count = 1
-              $('#addTime').on('click', (e) => {
-                let html = $('#timeSelect').html()
-             let newHtml =$(html).each((index,item) => {
-                if ($(item).is('input')) {
-                  $(item).attr('name', function(i,c){
-                    return c + count
-                  })
-                } else if ($(item).is('label')) { 
-                  $(item).text(function(i,c){
-                   return c + count
-                  })
-                }
-              })
-                $('.timeSlots').append(newHtml)
-                count +=1
-              })
+      $('#addTime').on('click', (e) => {
+        let html = $('#timeSelect').html()
+        let newHtml = $(html).each((index, item) => {
+          if ($(item).is('input')) {
+            $(item).attr('name', function (i, c) {
+              return c + count
+            })
+          } else if ($(item).is('label')) {
+            $(item).text(function (i, c) {
+              return c + count
+            })
+          }
+        })
+        $('.timeSlots').append(newHtml)
+        count += 1
+      })
       // $('.existingHostEvents').hide()
       $('.aboutContainerRight').hide()
       $('.rightBodyContainerMain').hide()
