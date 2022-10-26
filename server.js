@@ -24,7 +24,7 @@ app.use(cookieSession({
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   '/styles',
@@ -66,8 +66,8 @@ const {makeId} = require('./helper');
 //   req.user = user;
 //   next();
 // });
-app.post('createUser', (req,res) => {
-  /*
+// app.post('createUser', (req,res) => {
+/*
   use req.body to set cookies
   add invitee with query
   add tables for agreed upon dates
@@ -75,7 +75,7 @@ MAIN PAGE
 query invitees_dates where true display true else false
 
   */
-});
+// });
 app.post('/createEvent', (req, res) => {
   let dates = [];
   let {name, email, title, description, location} = req.body;

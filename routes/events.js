@@ -9,8 +9,8 @@ const express = require('express');
 const router = express.Router();
 const eventQueries = require('../db/queries/events');
 const jwt = require('jsonwebtoken');
-const eventTimesQueries = require('../db/queries/eventTimes')
-const moment = require('moment')
+const eventTimesQueries = require('../db/queries/eventTimes');
+const moment = require('moment');
 
 
 
@@ -59,7 +59,7 @@ router.get('/:id', (req, res) => {
               user: req.user,
               guest: req.session.userId,
             });
-        })
+        });
     });
 });
 
