@@ -66,7 +66,9 @@ const {makeId} = require('./helper');
 //   req.user = user;
 //   next();
 // });
-
+app.post('/createRoute', (req,res) => {
+  let {name, email} = req.body;
+});
 app.post('/createEvent', (req, res) => {
   console.log('onroute form',req.body);
   let {name, email, title, description, location, dates} = req.body;
