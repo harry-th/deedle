@@ -1,4 +1,4 @@
-const makeId = function() {
+const makeId = function () {
   let result = '';
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let i = 0;

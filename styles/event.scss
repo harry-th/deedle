@@ -14,6 +14,7 @@ $greenButton: darkseagreen;
     float: left;
     outline: 3px solid $redButton;
   }
+
   text-align: center;
   font-size: 20px;
   margin: 4px;
@@ -23,49 +24,6 @@ $greenButton: darkseagreen;
   height: 80%;
   background-color: $off-white;
   width: 25%;
-}
-.eventsPage__bottom {
-  display: flex;
-  justify-content: center;
-  min-height: 200px;
-  width: 100%;
-  border: solid purple 1px;
-}
-
-
-
-
-header {
-  width: 100%;
-  margin-bottom: 4%;
-  height: 6rem;
-  background-color: $sleek-grey;
-  position: fixed;
-  top: 0;
-
-  .material-icons {
-    color: $mint-cream;
-    font-size: 4em;
-    margin-left: 2%;
-  }
-
-}
-
-.logoContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: $off-white;
-  height: 100%;
-  padding-left: 5%;
-}
-
-body {
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-  background-color: $feather;
-  font-family: 'Zilla Slab', serif;
 }
 
 // .wrapper {
@@ -232,61 +190,164 @@ body {
 /// ///////////////////////////////
 /// ///////////////////////////////
 /// ///////////////////////////////
-.eventsPage {
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 6rem;
+///
+///
+///
 
-  .eventsPage__top {
-    display: flex;
-    min-height: 10px;
-    border: solid red 1px;
-    margin-top: 160px;
-    justify-content: space-between;
+body {
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: $feather;
+  font-family: 'Zilla Slab', serif;
 
-    .eventsPage__top__left {
-      width: calc(50% - (40px / 2));
-      border: solid blue 1px;
-      border-radius: 25px;
-      background-color: $mint-cream;
-      text-align: center;
+  header {
+    width: 100%;
+    margin-bottom: 4%;
+    height: 6rem;
+    background-color: $sleek-grey;
+    position: fixed;
+    top: 0;
 
-      .eventsPage__top__left__eventDetails {
-        border: solid green 1px;
-        padding: 6px;
-
-
-        .eventsPage__top__left__eventDetails__title {}
-
-        .eventsPage__top__left__eventDetails__description {}
-
-        .eventsPage__top__left__eventDetails__contact {
-          .eventsPage__top__left__eventDetails__contact__item {}
-        }
-
-      }
-
-    }
-
-    .eventsPage__top__right {
-      width: calc(50% - (40px / 2));
-      border: solid green 1px;
-      background-color: $mint-cream;
-      border-radius: 25px;
-      padding: 6px;
-
-      .eventsPage__top__right__location {
-        .eventsPage__top__right__location__title {}
-
-        .eventsPage__top__right__location__details {
-          .eventsPage__top__right__location__details__list {
-            .eventsPage__top__right__location__details__list__item {}
-          }
-        }
-      }
+    .material-icons {
+      color: $mint-cream;
+      font-size: 4em;
+      margin-left: 2%;
     }
 
   }
 
+  .logoContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $off-white;
+    height: 100%;
+    padding-left: 5%;
+  }
+
+  .eventsPage {
+    margin-left: 7%;
+    margin-right: 7%;
+    margin-top: 6rem;
+
+
+    .eventsPage__top__share {
+      border: solid blue 1px;
+      background-color: $mint-cream;
+      width: fit-content;
+      margin: 0 auto;
+      padding: 8px;
+      border-radius: 25px;
+      margin-top: 150px;
+
+      .eventsPage__top__share__title {
+        text-align: center;
+      }
+
+      .eventsPage__top__share__url {
+        text-align: center;
+        background-color: $sleek-grey;
+        color: $off-white;
+        padding: 6px;
+        border-radius: 12px;
+        border: solid tomato 2px;
+      }
+    }
+
+    .eventsPage__top {
+      display: flex;
+      margin-top: 4rem;
+      justify-content: space-between;
+
+      .eventsPage__top__left {
+        width: calc(50% - (40px / 2));
+        border-radius: 25px;
+        background-color: $mint-cream;
+        text-align: center;
+
+        .eventsPage__top__left__eventDetails {
+          padding: 8px;
+
+
+          .eventsPage__top__left__eventDetails__title {
+            margin-bottom: 40px;
+          }
+
+          .eventsPage__top__left__eventDetails__description {
+            background-color: $sleek-grey;
+            color: $off-white;
+            padding: 8px;
+            border-radius: 12px;
+            border: solid tomato 2px;
+          }
+
+          .eventsPage__top__left__eventDetails__contact {
+
+            .eventsPage__top__left__eventDetails__contact__itemContainer {
+              background-color: $sleek-grey;
+              padding: 0px 12px;
+              border-radius: 12px;
+              border: solid tomato 2px;
+              width: 50%;
+              margin: 0 auto;
+            }
+
+            .eventsPage__top__left__eventDetails__contact__item {
+              color: $off-white;
+              padding: 4px 0px;
+            }
+          }
+
+        }
+
+      }
+
+      .eventsPage__top__right {
+        width: calc(50% - (40px / 2));
+        background-color: $mint-cream;
+        border-radius: 25px;
+        padding: 6px;
+
+        .eventsPage__top__right__location {
+          padding-left: 8px;
+          padding-top: 10px;
+          width: fit-content;
+
+          .eventsPage__top__right__location__title {
+            padding: 0px 12px;
+          }
+
+          .eventsPage__top__right__location__details {
+            .eventsPage__top__right__location__details__list {
+              background-color: $sleek-grey;
+              list-style-type: none;
+              padding: 0px 12px;
+              border-radius: 12px;
+              border: solid tomato 2px;
+
+
+              .eventsPage__top__right__location__details__list__item {
+                color: $off-white;
+                padding: 4px 0px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+    .eventsPage__bottom {
+      display: flex;
+      justify-content: center;
+      min-height: 200px;
+      width: 100%;
+      border: solid purple 1px;
+      margin-top: 100px;
+    }
+
+
+  }
 
 }
