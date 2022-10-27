@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Event Page</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +22,11 @@
 <body>
   <%- include('partials/header') %>
     <div class="eventsPage">
+      <div class="eventsPage__top__share">
+        <h4 class="eventsPage__top__share__title">Please Share the Event!</h4>
+        <p class="eventsPage__top__share__url">
+        </p>
+      </div>
       <div class="eventsPage__top">
         <div class="eventsPage__top__left">
           <div class="eventsPage__top__left__eventDetails">
@@ -33,21 +38,23 @@
             </p>
             <div class="eventsPage__top__left__eventDetails__contact ">
               <h3>Host Details</h3>
-              <div class="eventsPage__top__left__eventDetails__contact__item">
-                <%= event.hostname %>
-              </div>
-              <div class="eventsPage__top__left__eventDetails__contact__item">
-                <%= event.phone %>
-              </div>
-              <div class="eventsPage__top__left__eventDetails__contact__item">
-                <%= event.email %>
+              <div class="eventsPage__top__left__eventDetails__contact__itemContainer">
+                <div class="eventsPage__top__left__eventDetails__contact__item">
+                  <%= event.hostname %> Name
+                </div>
+                <div class="eventsPage__top__left__eventDetails__contact__item">
+                  <%= event.phone %> Phone
+                </div>
+                <div class="eventsPage__top__left__eventDetails__contact__item">
+                  <%= event.email %> Email
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="eventsPage__top__right">
           <div class="eventsPage__top__right__location">
-            <h4 class="eventsPage__top__right__location__title">Event Details & RSVP</h4>
+            <h3 class="eventsPage__top__right__location__title">Event Details & RSVP</h3>
             <div class="eventsPage__top__right__location__details">
               <form method="POST" action="/user/create">
                 <% if(guest.contact && guest.contact.name===undefined) { %>
@@ -60,16 +67,16 @@
                   <% } else { %>
                     <ul class="eventsPage__top__right__location__details__list">
                       <li class="eventsPage__top__right__location__details__list__item">
-                        <%= event.address %>
+                        <%= event.address %> Address
                       </li>
                       <li class="eventsPage__top__right__location__details__list__item">
-                        <%= event.city %>
+                        <%= event.city %> City
                       </li>
                       <li class="eventsPage__top__right__location__details__list__item">
-                        <%= event.province %>
+                        <%= event.province %> Province
                       </li>
                       <li class="eventsPage__top__right__location__details__list__item">
-                        <%= event.post_code %> -->
+                        <%= event.post_code %> Post_code
                           <% } %>
                       </li>
                     </ul>

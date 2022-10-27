@@ -231,9 +231,33 @@ body {
     margin-right: 7%;
     margin-top: 6rem;
 
+
+    .eventsPage__top__share {
+      border: solid blue 1px;
+      background-color: $mint-cream;
+      width: fit-content;
+      margin: 0 auto;
+      padding: 8px;
+      border-radius: 25px;
+      margin-top: 150px;
+
+      .eventsPage__top__share__title {
+        text-align: center;
+      }
+
+      .eventsPage__top__share__url {
+        text-align: center;
+        background-color: $sleek-grey;
+        color: $off-white;
+        padding: 6px;
+        border-radius: 12px;
+        border: solid tomato 2px;
+      }
+    }
+
     .eventsPage__top {
       display: flex;
-      margin-top: 10rem;
+      margin-top: 4rem;
       justify-content: space-between;
 
       .eventsPage__top__left {
@@ -255,10 +279,24 @@ body {
             color: $off-white;
             padding: 8px;
             border-radius: 12px;
+            border: solid tomato 2px;
           }
 
           .eventsPage__top__left__eventDetails__contact {
-            .eventsPage__top__left__eventDetails__contact__item {}
+
+            .eventsPage__top__left__eventDetails__contact__itemContainer {
+              background-color: $sleek-grey;
+              padding: 0px 12px;
+              border-radius: 12px;
+              border: solid tomato 2px;
+              width: 50%;
+              margin: 0 auto;
+            }
+
+            .eventsPage__top__left__eventDetails__contact__item {
+              color: $off-white;
+              padding: 4px 0px;
+            }
           }
 
         }
@@ -272,13 +310,27 @@ body {
         padding: 6px;
 
         .eventsPage__top__right__location {
-          border: solid red 1px;
+          padding-left: 8px;
+          padding-top: 10px;
+          width: fit-content;
 
-          .eventsPage__top__right__location__title {}
+          .eventsPage__top__right__location__title {
+            padding: 0px 12px;
+          }
 
           .eventsPage__top__right__location__details {
             .eventsPage__top__right__location__details__list {
-              .eventsPage__top__right__location__details__list__item {}
+              background-color: $sleek-grey;
+              list-style-type: none;
+              padding: 0px 12px;
+              border-radius: 12px;
+              border: solid tomato 2px;
+
+
+              .eventsPage__top__right__location__details__list__item {
+                color: $off-white;
+                padding: 4px 0px;
+              }
             }
           }
         }
