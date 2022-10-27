@@ -46,19 +46,26 @@ router.get('/:id', (req, res) => {
         return;
       }
       inviteeDates.getDateList(data.id).then((userDates) => {
+        console.log(userDates);
         let dates = [];
-        dates.push({start_time:userDates[0].start_time, end_time:userDates[0].end_time , guests: []});
-
-        for (let item of userDates) {
-          for (let element of dates) {
-            if (item.start_time === element.start_time && item.end_time === element.end_time) {
-              element.guests.push({name:item.name});
-              element.guests.push({isAttending:item.is_attending});
+        if (userDates.length >= 1) {
+          for (let item of userDates) {
+            let noMatch = true;
+            for (let element of dates) {
+              if (item.start_time.toString() === element.start_time.toString()
+                && item.end_time.toString() === element.end_time.toString()) {
+                element.guests.push({name:item.name});
+                noMatch = !noMatch;
+              }
+            }
+            if (noMatch) {
+              // eslint-disable-next-line camelcase
+              dates.push({start_time:item.start_time, end_time:item.end_time,
+                guests: [{name :item.name},{isAttending: item.is_attending}]});
             }
           }
+          console.log(dates);
         }
-        console.log(dates);
-        userDates = dates;
         eventTimesQueries.getEventTimesByEventId(data.id)
           .then((eventTimesData) => {
             res.render('event',
@@ -76,7 +83,7 @@ router.get('/:id', (req, res) => {
               },
                 user: req.user,
                 guest: req.session.userId,
-                rvsp: userDates.map((time) => ({
+                rvsp: dates.map((time) => ({
                   startDate: moment(time.start_time).format('MMMM Do YYYY'),
                   endDate: moment(time.end_time).format('MMMM Do YYYY'),
                   guests: time.guests

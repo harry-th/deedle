@@ -108,7 +108,7 @@ app.post('/user/create', (req, res) => {
       }
     }
   });
-  res.redirect('back');
+  res.redirect(`back`);
 });
 app.post('/createEvent', (req, res) => {
   let dates = [];

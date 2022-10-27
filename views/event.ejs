@@ -49,7 +49,7 @@
           <div class="eventsPage__top__right__location">
             <h4 class="eventsPage__top__right__location__title">Event Details & RSVP</h4>
             <div class="eventsPage__top__right__location__details">
-             <% if(guest.contact.name) { %>
+             <% if(guest.contact.name !== undefined) { %>
               <p>Welcome back <%= guest.contact.name %></p>
               <% } %>
               <form method="post" action="/user/create">
@@ -97,7 +97,8 @@
           </div>
           <% } %>
         </form>
-        <% for (let item of rvsp) { %>
+        <% if (rvsp) { %>
+         <% for (let item of rvsp) { %>
           <div>
             <% if (item.startDate === item.endDate) { %>
               <p>on <%= item.startDate %></p>
@@ -109,6 +110,9 @@
               <%  } %>
           </div>
       <%  } %>
+      <%} else { %>
+        <p>no guests</p>
+        <% } %>
       </div>
 <script>
   $(document).ready(function() {
