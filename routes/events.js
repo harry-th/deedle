@@ -52,16 +52,19 @@ router.get('/:id', (req, res) => {
           for (let item of userDates) {
             let noMatch = true;
             for (let element of dates) {
+              console.log(item.start_time.toString() === element.start_time.toString()
+              && item.end_time.toString() === element.end_time.toString());
               if (item.start_time.toString() === element.start_time.toString()
                 && item.end_time.toString() === element.end_time.toString()) {
                 element.guests.push({name:item.name});
                 noMatch = !noMatch;
+                break;
               }
             }
-            if (noMatch) {
-              // eslint-disable-next-line camelcase
+            
+            if (noMatch) { // eslint-disable-next-line camelcase
               dates.push({start_time:item.start_time, end_time:item.end_time,
-                guests: [{name :item.name},{isAttending: item.is_attending}]});
+                guests: [{name:item.name}]});
             }
           }
           console.log(dates);

@@ -79,9 +79,6 @@ const inviteeDates = require('./db/queries/invitees_dates');
 
 const {makeId} = require('./helper');
 
-app.post('/users/guests', (req,res) =>{
-  inviteeDates.getDateList(3);
-});
 
 app.post('/user/create', (req, res) => {
   let {name, email, eventId, attending, timeId } = req.body;
