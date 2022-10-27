@@ -9,6 +9,32 @@ $greenButton: darkseagreen;
   box-sizing: border-box;
 }
 
+.timeChoice {
+  input {
+    float: left;
+    outline: 3px solid $redButton;
+  }
+  text-align: center;
+  font-size: 20px;
+  margin: 4px;
+  padding: 10px;
+  max-width: 300px;
+  min-width: 120px;
+  height: 80%;
+  background-color: $off-white;
+  width: 25%;
+}
+.eventsPage__bottom {
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
+  width: 100%;
+  border: solid purple 1px;
+}
+
+
+
+
 header {
   width: 100%;
   margin-bottom: 4%;
@@ -262,9 +288,5 @@ body {
 
   }
 
-  .eventsPage__bottom {
-    min-height: 200px;
-    width: 100%;
-    border: solid purple 1px;
-  }
+
 }

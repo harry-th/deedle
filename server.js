@@ -57,10 +57,7 @@ app.use('/events', eventsRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-const eventQueries = require('./db/queries/events');
-const eventTimesQueries = require('./db/queries/eventTimes');
 
-const {makeId} = require('./helper');
 // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
 //   if (err) return res.sendStatus(403);
 //   req.user = user;
@@ -75,7 +72,30 @@ MAIN PAGE
 query invitees_dates where true display true else false
 
   */
-// });
+const eventQueries = require('./db/queries/events');
+const eventTimesQueries = require('./db/queries/eventTimes');
+const inviteeQueries = require('./db/queries/invitees');
+const inviteeDates = require('./db/queries/invitee_dates');
+
+const {makeId} = require('./helper');
+
+app.post('/user/create', (req, res) => {
+  console.log(req.body);
+  let {name, email, eventId } = req.body;
+  req.session.userId.contact.name = name;
+  req.session.userId.contact.email = email;
+
+  inviteeQueries.createGuest(name, email).then((id) => {
+    for (const item in req.body) {
+      if (Number(item) && req.body[item] === 'on') {
+        inviteeDates.makeDate(eventId, id.id, item).then((id) => {
+          console.log(id);
+        });
+      }
+    }
+  });
+  res.redirect('back');
+});
 app.post('/createEvent', (req, res) => {
   let dates = [];
   let {name, email, title, description, location} = req.body;

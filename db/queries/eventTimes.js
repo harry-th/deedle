@@ -2,8 +2,8 @@ const db = require('../connection');
 
 
 const createEventTimes = (eventId, dates) => {
-  let query = `INSERT INTO event_times (event_Id, start_time, end_time)
-  VALUES ($1, $2, $3)`;
+  console.log(dates);
+  let query = `INSERT INTO event_times (event_id, start_time, end_time) VALUES ($1, $2, $3)`;
   for (let i = 1; i < dates.length; i++) {
     query += `,($${3 + i}, $${4 + i}, $${5 + i})`;
   }
@@ -12,6 +12,7 @@ const createEventTimes = (eventId, dates) => {
   for (let i = 1; i < dates.length; i++) {
     values.push(eventId, dates[i]['dateStart' + i], dates[i]['dateEnd' + i]);
   }
+  console.log('hello', query, values, dates);
   return db.query(query, values).then((data) => {
     console.log(data.rows);
   });

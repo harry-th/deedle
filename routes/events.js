@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  console.log('hello');
   let { id } = req.params;
   if (req.query.AuthToken) {
     jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -47,6 +48,7 @@ router.get('/:id', (req, res) => {
           res.render('event',
             {
               eventTimes: eventTimesData.map((time) => ({
+                id: time.id,
                 startDate: moment(time.start_time).format('MMMM Do YYYY'),
                 endDate: moment(time.end_time).format('MMMM Do YYYY'),
                 startTime: moment(time.start_time).format('h:mm:ss a'),
@@ -54,10 +56,10 @@ router.get('/:id', (req, res) => {
               })),
               event:
               {
-                title: data.title, description: data.description,
+                id: data.id, title: data.title, description: data.description,
               },
               user: req.user,
-              guest: req.session.userId,
+              guest: req.session.userId || false,
             });
         });
     });
