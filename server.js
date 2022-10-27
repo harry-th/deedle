@@ -89,6 +89,7 @@ app.post('/user/create', (req, res) => {
   }
   req.session.userId.contact.name = name;
   req.session.userId.contact.email = email;
+  console.log(req.body);
 
   inviteeQueries.createGuest(email, name).then((id) => {
     for (const item in req.body) {
@@ -97,8 +98,7 @@ app.post('/user/create', (req, res) => {
           console.log(id);
         });
         break;
-      }
-      if (Number(item) && req.body[item] === 'on') {
+      } else if (Number(item) && req.body[item] === 'on') {
         inviteeDates.makeDate(eventId, id.id, item, true).then((id) => {
           console.log(id);
         });

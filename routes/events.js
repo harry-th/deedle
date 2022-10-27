@@ -46,22 +46,19 @@ router.get('/:id', (req, res) => {
         return;
       }
       inviteeDates.getDateList(data.id).then((userDates) => {
-        console.log(userDates);
         let dates = [];
         if (userDates.length >= 1) {
-          for (let item of userDates) {
+          loop: for (let item of userDates) {
             let noMatch = true;
-            for (let element of dates) {
-              console.log(item.start_time.toString() === element.start_time.toString()
-              && item.end_time.toString() === element.end_time.toString());
-              if (item.start_time.toString() === element.start_time.toString()
-                && item.end_time.toString() === element.end_time.toString()) {
-                element.guests.push({name:item.name});
+            for (let i = 0; i < dates.length; i++) {
+              console.log('original', item,'fromdates', dates[i],'collection',dates);
+              if (item.start_time.toString() === dates[i].start_time.toString()
+                && item.end_time.toString() === dates[i].end_time.toString()) {
+                dates[i].guests.push({name:item.name});
                 noMatch = !noMatch;
-                break;
+                continue loop;
               }
             }
-            
             if (noMatch) { // eslint-disable-next-line camelcase
               dates.push({start_time:item.start_time, end_time:item.end_time,
                 guests: [{name:item.name}]});

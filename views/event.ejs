@@ -56,11 +56,11 @@
           <div class="eventsPage__top__right__location">
             <h3 class="eventsPage__top__right__location__title">Event Details & RSVP</h3>
             <div class="eventsPage__top__right__location__details">
-             <% if(guest.contact.name !== undefined) { %>
+             <% if(guest !== undefined) { %>
               <p>Welcome back <%= guest.contact.name %></p>
               <% } %>
               <form method="post" action="/user/create">
-                <% if(guest.contact && guest.contact.name === undefined) { %>
+                <% if(guest && guest.contact.name === undefined) { %>
                 <p>email </p>
                 <input type="text" name ='email' id="email" />
                 <p>name</p>
