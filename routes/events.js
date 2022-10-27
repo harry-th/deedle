@@ -72,10 +72,10 @@ router.get('/:id', (req, res) => {
               {
                 eventTimes: eventTimesData.map((time) => ({
                   id: time.id,
-                  startDate: moment(time.start_time).format('MMMM Do YYYY'),
-                  endDate: moment(time.end_time).format('MMMM Do YYYY'),
-                  startTime: moment(time.start_time).format('h:mm a'),
-                  endTime: moment(time.end_time).format('h:mm a')
+                  startDate: moment(time.start_time, "MM-DD-YYYY HH:mm:ss A").format('MMMM Do YYYY'),
+                  endDate: moment(time.end_time, "MM-DD-YYYY HH:mm:ss A").format('MMMM Do YYYY'),
+                  startTime: moment(time.start_time, "MM-DD-YYYY HH:mm:ss A").format('h:mm a'),
+                  endTime: moment(time.end_time, "MM-DD-YYYY HH:mm:ss A").format('h:mm a')
                 })),
                 event:
               {
