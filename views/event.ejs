@@ -86,7 +86,7 @@
       <div class="eventsPage__bottom">
         <% for(const item of eventTimes) { %>
           <div class="timeChoice">
-            <input type="checkbox" name=<%= item.id  %> required />
+            <input type="checkbox" name=<%= item.id  %> />
             <% if (item.startDate === item.endDate) { %>
             <p>on <%= item.startDate %></p>
             <p>from <%= item.startTime %> to <%= item.endTime %></p>
