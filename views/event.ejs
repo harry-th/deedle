@@ -49,30 +49,30 @@
           <div class="eventsPage__top__right__location">
             <h4 class="eventsPage__top__right__location__title">Event Details & RSVP</h4>
             <div class="eventsPage__top__right__location__details">
-              <form method="post" action="/user/create">
-                <% if(guest.contact && guest.contact.name === undefined) { %>
-                <p>email </p>
-                <input type="text" name ='email' />
-                <p>name</p>
-                <input type="text" name="name" />
-                <input type="hidden" name="eventId" value=<%=event.id%> />
-                <button>submit</button>
-                <% } else { %> 
-              <ul class="eventsPage__top__right__location__details__list">
-                <li class="eventsPage__top__right__location__details__list__item">
-                  <%= event.address %>
-                </li>
-                <li class="eventsPage__top__right__location__details__list__item">
-                  <%= event.city %>
-                </li>
-                <li class="eventsPage__top__right__location__details__list__item">
-                  <%= event.province %>
-                </li>
-                <li class="eventsPage__top__right__location__details__list__item">
-                  <%= event.post_code %> -->
-                  <% } %>
-               </li>
-              </ul>
+              <form method="POST" action="/user/create">
+                <% if(guest.contact && guest.contact.name===undefined) { %>
+                  <p>Email </p>
+                  <input type="text" name='email' />
+                  <p>Name</p>
+                  <input type="text" name="name" />
+                  <input type="hidden" name="eventId" value=<%=event.id%> />
+                  <button>submit</button>
+                  <% } else { %>
+                    <ul class="eventsPage__top__right__location__details__list">
+                      <li class="eventsPage__top__right__location__details__list__item">
+                        <%= event.address %>
+                      </li>
+                      <li class="eventsPage__top__right__location__details__list__item">
+                        <%= event.city %>
+                      </li>
+                      <li class="eventsPage__top__right__location__details__list__item">
+                        <%= event.province %>
+                      </li>
+                      <li class="eventsPage__top__right__location__details__list__item">
+                        <%= event.post_code %> -->
+                          <% } %>
+                      </li>
+                    </ul>
             </div>
           </div>
         </div>
@@ -80,24 +80,27 @@
       <div class="eventsPage__bottom">
         <% for(const item of eventTimes) { %>
           <div class="timeChoice">
-            <input type="checkbox" name=<%= item.id  %> >
-            <% if (item.startDate === item.endDate) { %>
-            <p>on <%= item.startDate %></p>
-            <p>from <%= item.startTime %> to <%= item.endTime %></p>
-            <% } else { %>
-            <p>on <%= item.startDate %> at <%= item.startTime %> until <%= item.endDate %> at <%= item.endTime %></p>
+            <input type="checkbox" name=<%=item.id %> >
+            <% if (item.startDate===item.endDate) { %>
+              <p>on <%= item.startDate %>
+              </p>
+              <p>from <%= item.startTime %> to <%= item.endTime %>
+              </p>
+              <% } else { %>
+                <p>on <%= item.startDate %> at <%= item.startTime %> until <%= item.endDate %> at <%= item.endTime %>
+                </p>
 
-            <% } %>
+                <% } %>
           </div>
           <% } %>
-        </form>
-        
+            </form>
+
       </div>
-<script>
-  $(document).ready(function() {
-    
-  })
-</script>
+      <script>
+        $(document).ready(function () {
+
+        })
+      </script>
     </div>
 </body>
 <script>
@@ -105,4 +108,5 @@
   //   console.log(eventTimes)
   // })
 </script>
+
 </html>

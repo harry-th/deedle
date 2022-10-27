@@ -5,93 +5,122 @@ $mint-cream: #F5FFFA; //major containers
 $redButton: tomato;
 $greenButton: darkseagreen;
 
-header {
-  width: 100%;
-  margin-bottom: 4%;
-  height: 6rem;
-  background-color: $sleek-grey;
-  position: fixed;
-  top: 0;
-
-  .material-icons {
-    color: $mint-cream;
-    font-size: 4em;
-    margin-left: 2%;
-  }
-}
-
-.logoContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: $off-white;
-  height: 100%;
-  padding-left: 5%;
+* {
+  box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
   width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
   background-color: $feather;
   font-family: 'Zilla Slab', serif;
 
-  .wrapper {
+  header {
+    width: 100%;
+    margin-bottom: 4%;
+    height: 6rem;
+    background-color: $sleek-grey;
+    position: fixed;
+    top: 0;
+
+    .material-icons {
+      color: $mint-cream;
+      font-size: 4em;
+      margin-left: 2%;
+    }
+  }
+
+  .logoContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: $off-white;
+    height: 100%;
+    padding-left: 5%;
+  }
+
+  .mainPage {
     margin-right: 2%;
     margin-left: 2%;
-    max-width: 1300px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-top: 200px;
-  }
-
-  input {
-    background-color: $sleek-grey;
-    color: $off-white;
-    border: $redButton solid 2px;
-    border-radius: 6px;
-    margin: 8px 0px;
-  }
-
-  button {
-    background-color: $greenButton;
-    border-radius: 6px;
-  }
-}
-
-
-
-.createEventContainer {
-  width: 50%;
-  height: 100%;
-  background-color: $mint-cream;
-  border-radius: 25px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2%;
-  padding: 30px;
-
-  h2 {
-    margin-top: -4px;
-  }
-
-  .newEventForm {
+    max-width: 1800px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10rem;
     display: flex;
-    flex-direction: column;
-    width: 90%;
+
+    .mainPage__left {
+      width: 40%;
+      background-color: $mint-cream;
+      border-radius: 25px;
+      padding: 20px;
+
+      .mainPage__left__title {
+        padding-bottom: 12px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .mainPage__left__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .mainPage__left__form__label {
+          padding: 6px 0px;
+        }
+
+        .mainPage__left__form__item {
+          width: 80%;
+          background-color: $sleek-grey;
+          border: solid 2px tomato;
+          border-radius: 12px;
+          padding: 4px;
+          color: $off-white;
+          text-align: center;
+        }
+
+        #mainPage__left__form__timeSelect {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          width: 100%;
+        }
+
+        .mainPage__left__form__time {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          width: 100%;
+        }
+
+        .mainPage__left__form__button {
+          padding: 6px;
+          margin-top: 12px;
+          width: 80%;
+          border-radius: 12px;
+          border: solid 2px $greenButton;
+          background-color: $greenButton;
+        }
+      }
+    }
+
+    .mainPage__right {
+      width: 60%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .mainPage__right__title {
+        margin-bottom: 150px;
+        font-size: 6em;
+        color: $mint-cream;
+        border: dashed tomato 4px;
+        padding: 20px;
+        border-radius: 25px;
+      }
+    }
   }
-
-  #timeSlotsList {
-    display: flex;
-    flex-direction: column;
-  }
-
-  select {
-    background-color: $sleek-grey;
-    color: $off-white;
-    border: $redButton solid 2px;
-    border-radius: 6px;
-    margin: 8px 0px;
-  }
-
-
 }

@@ -23,137 +23,70 @@
 
   <script defer src="/scripts/app.js"></script>
 </head>
-<%- include('partials/header') %>
 
-  <body>
-    <div class="wrapper">
-      <div class="createEventContainer" >
-        <form class="newEventForm"  method="post" action="/createEvent">
-          <h3>Your Information</h3>
-          <label for="name">Name</label>
-          <input type="text" name="name" require\ />
-          <label for="email">Email</label>
-          <input type="email" name="email" required />
-          <label for="phone">Phone (Optional)</label>
-          <input type="number" name="phone" />
+<body>
+  <%- include('partials/header') %>
+    <div class="mainPage">
+      <div class="mainPage__left">
+        <h3 class="mainPage__left__title">Your Information</h3>
+        <form class="mainPage__left__form" method="POST" action="/createEvent">
 
-          <label for="title">Title</label>
-          <input type="text" name="title" required />
-          <label for="description">Description</label>
-          <input type="text" name="description" required />
-          <label for="location">Location</label>
-          <input type="text" name="location" required />
-          <!-- <label for="date">Date</label> -->
-          <!-- <input id="date" type="date" name="date" value="" min=<% new Date().toLocaleDateString('en-ca') %> /> -->
-          <div id="timeSelect">
-          <label for="dateStart">Date start</label>
-            <input type="datetime-local" name="dateStart" required>
-            <label for="dateEnd">Date end</label>
-            <input type="datetime-local" name="dateEnd" required>
+          <label class="mainPage__left__form__label" for="name">Name</label>
+          <input class="mainPage__left__form__item" type="text" name="name" required />
+
+          <label class="mainPage__left__form__label" for="email">Email</label>
+          <input class="mainPage__left__form__item" type="email" name="email" required />
+
+          <label class="mainPage__left__form__label" for="phone">Phone (Optional)</label>
+          <input class="mainPage__left__form__item" type="text" name="phone" />
+
+          <label class="mainPage__left__form__label" for="title">Title</label>
+          <input class="mainPage__left__form__item" type="text" name="title" required />
+
+          <label class="mainPage__left__form__label" for="description">Description</label>
+          <input class="mainPage__left__form__item" type="text" name="description" required />
+
+          <label class="mainPage__left__form__label" for="location">Location</label>
+          <input class="mainPage__left__form__item" type="text" name="location" required />
+
+          <div id="mainPage__left__form__timeSelect">
+            <label class="mainPage__left__form__label" for="dateStart">Start Time</label>
+            <input class="mainPage__left__form__item" type="datetime-local" name="dateStart" required>
+            <label class="mainPage__left__form__label" for="dateEnd">End Time</label>
+            <input class="mainPage__left__form__item" type="datetime-local" name="dateEnd" required>
           </div>
-          <div class="timeSlots"></div>
-          <button type="button" id="addTime">add TimeSlot</button>
-          <!-- <%- include('partials/timeSlots') %> -->
-          <button> Create your event! </button>
+          <div class="mainPage__left__form__time"></div>
+          <button class="mainPage__left__form__button" type="button" id="addTime">Add Time Slot</button>
+
+          <button class="mainPage__left__form__button"> Create Your Event! </button>
+
         </form>
-
       </div>
-   <!-- LEFT FLOAT -->
-      <section id="leftBodyContainerMain">
-
-        <!-- LOGIN -->
-        <% if (!events) { %>
-          <div class="loginAndRegistration">
-            <div class="loginContainer">
-              <form class="login" method="POST" action="/login">
-                <p>Login</p>
-                <label for="Email">Email</label>
-                <input id="loginEmail" type="email" name="email">
-                <label id="loginPassword" for="Password">Password</label>
-                <input type="password" name="password" />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-
-            <!-- REGISTER -->
-            <div class="registerContainer">
-              <form class="register" method="POST" action="/register">
-                <p>Register</p>
-                <label for="name">name</label>
-                <input type="text" name="name" />
-                <label for="email">Email</label>
-                <input id="registerEmail" type="email" name="email" />
-                <label id="registerPassword" for="password">Password</label>
-                <input type="password" name="password" />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-          </div>
-          <% } else { %>
-            <p></p>
-            <% } %>
-
-
-
-              <!-- RIGHT FLOAT -->
-              <section id="rightBodyContainerMain">
-
-                <!-- ABOUT  -->
-                <div class="aboutContainerRight">
-                  <h1>Shmeckles</h1>
-                  <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut
-                    labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo
-                    consequat.</h4>
-                  <img src="https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg">
-                </div>
-
-                <!-- SCHEDULED EVENTS -->
-                <div class="existingHostEvents">
-                  <h4>Your scheduled events</h4>
-                  <ul class="scheduledEvents">
-                    <% if(events) { %>
-                      <% for (let item of events) { %>
-                        <li>
-                          <%= item %>
-                        </li>
-                        <% } %>
-                          <% } else { %>
-                            <p>list</p>
-                            <% } %>
-                  </ul>
-                </div>
-              </section>
+      <div class="mainPage__right">
+        <h1 class="mainPage__right__title">Eventgenix</h1>
+      </div>
     </div>
-  </body>
-  <script>
-    $(document).ready(function () {
-      let count = 1
-              $('#addTime').on('click', (e) => {
-                let html = $('#timeSelect').html()
-             let newHtml =$(html).each((index,item) => {
-                if ($(item).is('input')) {
-                  $(item).attr('name', function(i,c){
-                    return c + count
-                  })
-                } else if ($(item).is('label')) { 
-                  $(item).text(function(i,c){
-                   return c + count
-                  })
-                }
-              })
-                $('.timeSlots').append(newHtml)
-                count +=1
-              })
-      // $('.existingHostEvents').hide()
-      $('.aboutContainerRight').hide()
-      $('.rightBodyContainerMain').hide()
-      $('.loginAndRegistration').hide()
-      $('.existingHostEvents').hide()
-    });
-  </script>
+</body>
+<script>
+  $(document).ready(function () {
+    let count = 1
+    $('#addTime').on('click', (e) => {
+      let html = $('#mainPage__left__form__timeSelect').html()
+      let newHtml = $(html).each((index, item) => {
+        if ($(item).is('input')) {
+          $(item).attr('name', function (i, c) {
+            return c + count
+          })
+        } else if ($(item).is('label')) {
+          $(item).text(function (i, c) {
+            return c + ' ' + count
+          })
+        }
+      })
+      $('.mainPage__left__form__time').append(newHtml)
+      count += 1
+    })
+  });
+</script>
 
 </html>
