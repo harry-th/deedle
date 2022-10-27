@@ -10,6 +10,7 @@ const router = express.Router();
 const eventQueries = require('../db/queries/events');
 const jwt = require('jsonwebtoken');
 const eventTimesQueries = require('../db/queries/eventTimes');
+const inviteeDates = require('../db/queries/invitees_dates');
 const moment = require('moment');
 
 
@@ -19,7 +20,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  console.log('hello');
   let { id } = req.params;
   if (req.query.AuthToken) {
     jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -36,6 +36,8 @@ router.get('/:id', (req, res) => {
     }
   }
   //need to find a way to get the eventid by userid
+ 
+
 
   eventQueries.getEventsDetails(id)
     .then((data) => {
@@ -43,25 +45,45 @@ router.get('/:id', (req, res) => {
         res.redirect('/');
         return;
       }
-      eventTimesQueries.getEventTimesByEventId(data.id)
-        .then((eventTimesData) => {
-          res.render('event',
-            {
-              eventTimes: eventTimesData.map((time) => ({
-                id: time.id,
-                startDate: moment(time.start_time).format('MMMM Do YYYY'),
-                endDate: moment(time.end_time).format('MMMM Do YYYY'),
-                startTime: moment(time.start_time).format('h:mm:ss a'),
-                endTime: moment(time.end_time).format('h:mm:ss a')
-              })),
-              event:
+      inviteeDates.getDateList(data.id).then((userDates) => {
+        let dates = [];
+        dates.push({start_time:userDates[0].start_time, end_time:userDates[0].end_time , guests: []});
+
+        for (let item of userDates) {
+          for (let element of dates) {
+            if (item.start_time === element.start_time && item.end_time === element.end_time) {
+              element.guests.push({name:item.name});
+              element.guests.push({isAttending:item.is_attending});
+            }
+          }
+        }
+        console.log(dates);
+        userDates = dates;
+        eventTimesQueries.getEventTimesByEventId(data.id)
+          .then((eventTimesData) => {
+            res.render('event',
+              {
+                eventTimes: eventTimesData.map((time) => ({
+                  id: time.id,
+                  startDate: moment(time.start_time).format('MMMM Do YYYY'),
+                  endDate: moment(time.end_time).format('MMMM Do YYYY'),
+                  startTime: moment(time.start_time).format('h:mm a'),
+                  endTime: moment(time.end_time).format('h:mm a')
+                })),
+                event:
               {
                 id: data.id, title: data.title, description: data.description,
               },
-              user: req.user,
-              guest: req.session.userId || false,
-            });
-        });
+                user: req.user,
+                guest: req.session.userId,
+                rvsp: userDates.map((time) => ({
+                  startDate: moment(time.start_time).format('MMMM Do YYYY'),
+                  endDate: moment(time.end_time).format('MMMM Do YYYY'),
+                  guests: time.guests
+                })),
+              });
+          });
+      });
     });
 });
 

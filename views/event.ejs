@@ -49,13 +49,19 @@
           <div class="eventsPage__top__right__location">
             <h4 class="eventsPage__top__right__location__title">Event Details & RSVP</h4>
             <div class="eventsPage__top__right__location__details">
+             <% if(guest.contact.name) { %>
+              <p>Welcome back <%= guest.contact.name %></p>
+              <% } %>
               <form method="post" action="/user/create">
                 <% if(guest.contact && guest.contact.name === undefined) { %>
                 <p>email </p>
-                <input type="text" name ='email' />
+                <input type="text" name ='email' id="email" />
                 <p>name</p>
-                <input type="text" name="name" />
+                <input type="text" name="name" id="name" />
                 <input type="hidden" name="eventId" value=<%=event.id%> />
+                <input type="hidden" name="attending" value="true" id="attending" />
+                <input type="hidden" name ='timeId' value=<%=eventTimes[0].id%> />
+                <button  id="decline" formnovalidate>DECLINE</button>
                 <button>submit</button>
                 <% } else { %> 
               <ul class="eventsPage__top__right__location__details__list">
@@ -80,7 +86,7 @@
       <div class="eventsPage__bottom">
         <% for(const item of eventTimes) { %>
           <div class="timeChoice">
-            <input type="checkbox" name=<%= item.id  %> >
+            <input type="checkbox" name=<%= item.id  %> required />
             <% if (item.startDate === item.endDate) { %>
             <p>on <%= item.startDate %></p>
             <p>from <%= item.startTime %> to <%= item.endTime %></p>
@@ -91,18 +97,45 @@
           </div>
           <% } %>
         </form>
-        
+        <% for (let item of rvsp) { %>
+          <div>
+            <% if (item.startDate === item.endDate) { %>
+              <p>on <%= item.startDate %></p>
+              <% } else { %>
+            <p><%= item.startDate %> until <%= item.endDate %></p>
+            <% } %>
+            <% for (let guest of item.guests) { %>
+              <p><%= guest.name %></p>
+              <%  } %>
+          </div>
+      <%  } %>
       </div>
 <script>
   $(document).ready(function() {
-    
+
+    let name;
+    let email;
+    $('#decline').hide();
+
+    $('#name').on('change',function () {
+       name = $(this).val()
+    })
+    $('#email').on('change',function () {
+       email = $(this).val()
+    })
+    $('#name, #email').on('change', function() {
+      if (name && email) {
+        $('#decline').show();
+      } else {
+        $('#decline').hide();
+      }
+    })
+    $('#decline').on('click', () => {
+      $('#attending').val(false)
+    })
   })
 </script>
     </div>
 </body>
-<script>
-  // $(document).ready(function() {
-  //   console.log(eventTimes)
-  // })
-</script>
+
 </html>

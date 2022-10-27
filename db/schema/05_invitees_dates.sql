@@ -5,5 +5,5 @@ CREATE TABLE invitees_dates (
   event_id INTEGER references events(id),
   invitee_id INTEGER references invitees(id),
   event_time_id INTEGER references event_times(id),
-  is_attending BOOLEAN default true NOT NULL
+  is_attending BOOLEAN NOT NULL
 );

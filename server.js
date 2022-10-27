@@ -24,7 +24,7 @@ app.use(cookieSession({
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   '/styles',
@@ -75,20 +75,34 @@ query invitees_dates where true display true else false
 const eventQueries = require('./db/queries/events');
 const eventTimesQueries = require('./db/queries/eventTimes');
 const inviteeQueries = require('./db/queries/invitees');
-const inviteeDates = require('./db/queries/invitee_dates');
+const inviteeDates = require('./db/queries/invitees_dates');
 
 const {makeId} = require('./helper');
 
+app.post('/users/guests', (req,res) =>{
+  inviteeDates.getDateList(3);
+});
+
 app.post('/user/create', (req, res) => {
-  console.log(req.body);
-  let {name, email, eventId } = req.body;
+  let {name, email, eventId, attending, timeId } = req.body;
+  if (attending === 'false') {
+    attending = false;
+  } else {
+    attending = true;
+  }
   req.session.userId.contact.name = name;
   req.session.userId.contact.email = email;
 
-  inviteeQueries.createGuest(name, email).then((id) => {
+  inviteeQueries.createGuest(email, name).then((id) => {
     for (const item in req.body) {
+      if (!attending) {
+        inviteeDates.makeDate(eventId, id.id, timeId, false).then((id) => {
+          console.log(id);
+        });
+        break;
+      }
       if (Number(item) && req.body[item] === 'on') {
-        inviteeDates.makeDate(eventId, id.id, item).then((id) => {
+        inviteeDates.makeDate(eventId, id.id, item, true).then((id) => {
           console.log(id);
         });
       }
