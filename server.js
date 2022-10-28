@@ -89,7 +89,6 @@ app.post('/user/create', (req, res) => {
   }
   req.session.userId.contact.name = name;
   req.session.userId.contact.email = email;
-  console.log(req.body);
 
   inviteeQueries.createGuest(email, name).then((id) => {
     for (const item in req.body) {

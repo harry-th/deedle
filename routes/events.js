@@ -56,8 +56,6 @@ router.get('/:id', (req, res) => {
             }
             let noMatch = true;
             for (let element of dates) {
-              console.log(item.start_time.toString() === element.start_time.toString()
-                && item.end_time.toString() === element.end_time.toString());
               if (item.start_time.toString() === element.start_time.toString()
                 && item.end_time.toString() === element.end_time.toString()) {
                 element.guests.push({ name: item.name });
@@ -65,18 +63,17 @@ router.get('/:id', (req, res) => {
                 continue loop;
               }
             }
-            if (noMatch) { // eslint-disable-next-line camelcase
-              dates.push({
+            if (noMatch) {
+              dates.push({ // eslint-disable-next-line camelcase
                 start_time: item.start_time, end_time: item.end_time,
                 guests: [{ name: item.name }]
               });
             }
           }
         }
-        console.log(noShows);
         eventTimesQueries.getEventTimesByEventId(data.id)
           .then((eventTimesData) => {
-            console.log(eventTimesData, "test")
+            console.log(eventTimesData, "test");
             res.render('event',
               {
                 isUserHost: true,

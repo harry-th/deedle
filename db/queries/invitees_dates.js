@@ -22,4 +22,13 @@ const getDateList = (id) => {
   });
 };
 
-module.exports = { makeDate, getDateList };
+const reSubmit = (inviteeId, eventId, eventTimeId, truth) => {
+  return db.query(`Delete * from invitees_dates where 
+  invitees.id = $1 and
+  event_id = $2;`, [inviteeId, eventId]).then(() => {
+    makeDate(eventId, inviteeId, eventTimeId, truth).then((data) => {
+      return data.rows[0];
+    });
+  });
+};
+module.exports = { makeDate, getDateList, reSubmit };
