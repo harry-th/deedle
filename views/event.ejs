@@ -87,55 +87,40 @@
           <div class="eventsPage__bottom">
 
             <div class="eventsPage__bottom__left">
+
               <% for(const item of eventTimes) { %>
                 <div class="eventsPage__bottom__left__timeChoice">
-                  <input class="eventsPage__bottom__left__timeChoice__checkbox" type="checkbox" name=<%=item.id %> />
-                  <% if (item.startDate===item.endDate) { %>
+                  <input class="eventsPage__bottom__left__timeChoice__checkbox" type="checkbox" name=<%item.id%> />
+                  <% if(item.startDate===item.endDate) { %>
                     <div class="eventsPage__bottom__left__timeChoice__text">
                       <p>
                         <%= item.startDate %>
                       </p>
                       <p>from <%= item.startTime %> to <%= item.endTime %>
                       </p>
-                      <% } else { %>
+
+                    </div>
+                    <% } else { %>
+                      <div class="eventsPage__bottom__left__timeChoice__text">
                         <p>
                           <%= item.startDate %> at <%= item.startTime %> until <%= item.endTime %> <%= item.endDate %>
                         </p>
-                    </div>
-                    <% } %>
-                </div>
-                <% } %>
-                  </form>
-                  <% if (rvsp) { %>
-                    <% for (let item of rvsp) { %>
-                      <div>
-                        <% if (item.startDate===item.endDate) { %>
-                          <p>on <%= item.startDate %>
-                          </p>
-                          <% } else { %>
-                            <p>
-                              <%= item.startDate %> until <%= item.endDate %>
-                            </p>
-                            <% } %>
-                              <% for (let guest of item.guests) { %>
-                                <p>
-                                  <%= guest.name %>
-                                </p>
-                                <% } %>
+
                       </div>
                       <% } %>
-                        <% } %>
+                </div>
+                <% } %>
             </div>
+            <div class="eventsPage__bottom__right">
+              <h4 class="eventsPage__bottom__right__title">Not Attending</h4>
+              <% for(let noShow of noShows) { %>
+                <p>
+                  <%= noShow.name %>
+                </p>
+                <% } %>
+            </div>
+          </div>
 
-          </div>
-          <div class="eventsPage__bottom__right">
-            <h4 class="eventsPage__bottom__right__title">Not Attending</h4>
-            <% for(let noShow of noShows) { %>
-              <p>
-                <%= noShow.name %>
-              </p>
-              <% } %>
-          </div>
           <script>
             $(document).ready(function () {
 

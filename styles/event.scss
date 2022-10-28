@@ -181,8 +181,11 @@ body {
 
       .eventsPage__bottom__left {
         justify-content: center;
+        flex-wrap: wrap;
         min-height: 200px;
-        width: 14%;
+        width: 50%;
+        display: flex;
+
 
         .eventsPage__bottom__left__timeChoice {
           background-color: $mint-cream;
@@ -190,6 +193,7 @@ body {
           text-align: center;
           height: fit-content;
           padding: 6px;
+          width: 200px;
 
           .eventsPage__bottom__left__timeChoice__checkbox {
             width: 24px;
@@ -203,23 +207,24 @@ body {
       }
 
 
-    }
+      .eventsPage__bottom__right {
+        justify-content: center;
+        min-height: 200px;
+        background-color: $mint-cream;
+        border-radius: 25px;
+        text-align: center;
+        height: fit-content;
+        padding: 6px;
+        width: 14%;
 
-    .eventsPage__bottom__right {
-      justify-content: center;
-      min-height: 200px;
-      background-color: $mint-cream;
-      border-radius: 25px;
-      text-align: center;
-      height: fit-content;
-      padding: 6px;
-      width: 14%;
-
-      .eventsPage__bottom__right__title {
-        padding-top: 18px;
-        margin: 0 auto;
+        .eventsPage__bottom__right__title {
+          padding-top: 18px;
+          margin: 0 auto;
+        }
       }
     }
+
+
 
 
 
