@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
   let { id } = req.params;
   if (req.query.AuthToken) {
     jwt.verify(req.query.AuthToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      if (err) return console.log('fail'), res.sendStatus(403);
+      if (err) return console.log('error'), res.sendStatus(403);
       else {
         req.user = user;
       }
@@ -35,9 +35,6 @@ router.get('/:id', (req, res) => {
       req.session.userId.events.push(id);
     }
   }
-  //need to find a way to get the eventid by userid
-
-
 
   eventQueries.getEventsDetails(id)
     .then((data) => {
@@ -73,10 +70,6 @@ router.get('/:id', (req, res) => {
         }
         eventTimesQueries.getEventTimesByEventId(data.id)
           .then((eventTimesData) => {
-<<<<<<< HEAD
-            console.log(eventTimesData, "test");
-=======
->>>>>>> 35635bc350244f49256c17cac85e255aaafcb1f4
             res.render('event',
               {
                 isUserHost: true,
@@ -107,17 +100,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-
-
-// router.get('/placeEvent', (req, res) => {
-//   let id;
-
-// });
-// event:
-// {
-//   title: data.title, hostname: data.hostname, phone: data.phone, email: data.email, description: data.description,
-//   address: data.address, city: data.city, province: data.province, post_code: data.post_code, country: data.country, date: data.date
-// },
 
 
 

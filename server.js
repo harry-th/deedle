@@ -57,21 +57,6 @@ app.use('/events', eventsRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
-// jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//   if (err) return res.sendStatus(403);
-//   req.user = user;
-//   next();
-// });
-// app.post('createUser', (req,res) => {
-/*
-  use req.body to set cookies
-  add invitee with query
-  add tables for agreed upon dates
-MAIN PAGE
-query invitees_dates where true display true else false
-
-  */
 const eventQueries = require('./db/queries/events');
 const eventTimesQueries = require('./db/queries/eventTimes');
 const inviteeQueries = require('./db/queries/invitees');
@@ -93,14 +78,10 @@ app.post('/user/create', (req, res) => {
   inviteeQueries.createGuest(email, name).then((id) => {
     for (const item in req.body) {
       if (!attending) {
-        inviteeDates.makeDate(eventId, id.id, timeId, false).then((id) => {
-          console.log(id);
-        });
+        inviteeDates.makeDate(eventId, id.id, timeId, false);
         break;
       } else if (Number(item) && req.body[item] === 'on') {
-        inviteeDates.makeDate(eventId, id.id, item, true).then((id) => {
-          console.log(id);
-        });
+        inviteeDates.makeDate(eventId, id.id, item, true);
       }
     }
   });
@@ -119,7 +100,6 @@ app.post('/createEvent', (req, res) => {
   if (dates) {
     eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
       eventTimesQueries.createEventTimes(id.id,dates);
-      
       const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
       res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
     });
@@ -147,31 +127,6 @@ app.get('/', (req, res) => {
   res.render('index', templateVars);
 });
 
-// app.get('/test', (req,res) => {
-//   res.redirect('/');
-// });
-
-
-
-// app.post('/register', (req,res) => {
-
-// });
-// app.post('/:id', (res, res) => {
-
-// })
-// app.post('/:id/update', (res, res) => {
-
-// })
-// app.post('/:id/delete', (res, res) => {
-
-// })
-
-// let pageInfo;
-// app.get('/:id', (req, res) => {
-//   //query req.params(id)
-//   //pull page info
-//   res.render('event', pageInfo);
-// });
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

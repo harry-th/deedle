@@ -3,9 +3,7 @@ const db = require('../connection');
 const makeDate = (eventId, inviteeId, eventTimeId, truth) => {
  
   return db.query(`INSERT INTO invitees_dates (event_id, invitee_id, event_time_id, is_attending) VALUES ($1, $2, $3, $4) returning *;`,
-    [eventId, inviteeId, eventTimeId, truth]).then((data) => {
-    return data.rows[0];
-  });
+    [eventId, inviteeId, eventTimeId, truth]);
 };
 //start and end time, name, is_attending
 const getDateList = (id) => {

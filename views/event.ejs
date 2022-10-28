@@ -99,13 +99,12 @@
                       </p>
                       <% } else { %>
                         <p>
-                          <%= item.startDate %> at <%= item.startTime %> until <%= item.endDate %>
+                          <%= item.startDate %> at <%= item.startTime %> until <%= item.endTime %> <%= item.endDate %>
                         </p>
                     </div>
                     <% } %>
                 </div>
                 <% } %>
-
                   </form>
                   <% if (rvsp) { %>
                     <% for (let item of rvsp) { %>
@@ -125,7 +124,7 @@
                                 <% } %>
                       </div>
                       <% } %>
-                        <%} %>
+                        <% } %>
             </div>
 
           </div>
