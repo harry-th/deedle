@@ -26,174 +26,6 @@ $greenButton: darkseagreen;
   width: 25%;
 }
 
-// .wrapper {
-//   margin-right: 2%;
-//   margin-left: 2%;
-//   max-width: 1300px;
-//   padding-right: 10px;
-//   padding-left: 10px;
-//   margin-top: 200px;
-// }
-
-// main {
-//   float: left;
-//   width: 55%;
-//   margin-left: 5%;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: $mint-cream;
-//   border-radius: 25px;
-// }
-
-// .eventTitleContainer {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
-// .eventDescription {
-//   padding: 12px 20px;
-//   margin-top: 20px;
-
-//   p {
-//     background-color: $sleek-grey;
-//     border-radius: 14px;
-//     padding: 8px;
-//     font-style: italic;
-//     color: $off-white;
-//   }
-// }
-
-
-// .contactInfo {
-//   border: solid green 1px;
-
-//   ul {
-//     display: flex;
-//     flex-direction: column;
-//     list-style-type: none;
-
-//     li {
-//       padding: 6px 0px 6px 10px;
-//     }
-//   }
-
-//   h4 {
-//     align-items: center;
-//   }
-// }
-
-
-// .eventDateAndLocation {
-//   float: right;
-//   width: 30%;
-//   margin-right: 5%;
-//   margin-left: 5%;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: $mint-cream;
-//   border-radius: 25px;
-// }
-
-// .locationContainer {
-//   //see views/partials/eventDetails.ejs
-// }
-
-// .detailsTitle {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// .locationDetails {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   ul {
-//     list-style-type: none;
-//     margin: 0;
-//     padding: 8px;
-//     background-color: $sleek-grey;
-//     border-radius: 14px;
-
-//     li {
-//       padding: 4px 0px;
-//       color: $off-white;
-//     }
-//   }
-// }
-
-// .inviteeResponse {
-//   display: flex;
-//   align-items: center;
-//   flex-direction: column;
-//   height: 200px;
-// }
-
-// .eventDateAndTime {
-//   display: flex;
-//   flex-direction: column;
-//   list-style-type: none;
-//   padding-left: 0px;
-// }
-
-// .responseCheckmarks {
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .checkyesContainer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 50%;
-
-//   .checkyes {
-//     width: 100%;
-//     height: 100%;
-//   }
-
-//   .checkyesButton {
-//     width: 100%;
-//     height: 100%;
-//     background-color: darkseagreen;
-//     border-top-left-radius: 12px;
-//     border-top-right-radius: 12px;
-//   }
-// }
-
-// .checknoContainer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 50%;
-
-//   .checknoButton {
-//     width: 100%;
-//     height: 100%;
-//     background-color: tomato;
-//     border-bottom-left-radius: 12px;
-//     border-bottom-right-radius: 12px;
-//   }
-
-//   .checkno {
-//     width: 100%;
-//     height: 100%;
-//   }
-// }
-
-///////////////////////////////
-/// ///////////////////////////////
-/// ///////////////////////////////
-/// ///////////////////////////////
-/// ///////////////////////////////
-///
-///
-///
-
 body {
   width: 100%;
   margin-left: 5%;
@@ -203,7 +35,6 @@ body {
 
   header {
     width: 100%;
-    margin-bottom: 4%;
     height: 6rem;
     background-color: $sleek-grey;
     position: fixed;
@@ -230,6 +61,7 @@ body {
     margin-left: 7%;
     margin-right: 7%;
     margin-top: 6rem;
+    padding-top: 2rem;
 
 
     .eventsPage__top__share {
@@ -239,7 +71,6 @@ body {
       margin: 0 auto;
       padding: 8px;
       border-radius: 25px;
-      margin-top: 150px;
 
       .eventsPage__top__share__title {
         text-align: center;
@@ -252,12 +83,14 @@ body {
         padding: 6px;
         border-radius: 12px;
         border: solid tomato 2px;
+        overflow: hidden;
+        width: 10%;
+        margin: 0 auto;
       }
     }
 
     .eventsPage__top {
       display: flex;
-      margin-top: 4rem;
       justify-content: space-between;
 
       .eventsPage__top__left {
@@ -286,10 +119,10 @@ body {
 
             .eventsPage__top__left__eventDetails__contact__itemContainer {
               background-color: $sleek-grey;
-              padding: 0px 12px;
+              padding: 12px;
               border-radius: 12px;
               border: solid tomato 2px;
-              width: 50%;
+              width: fit-content;
               margin: 0 auto;
             }
 
@@ -343,8 +176,24 @@ body {
       justify-content: center;
       min-height: 200px;
       width: 100%;
-      border: solid purple 1px;
       margin-top: 100px;
+
+      .eventsPage__bottom__timeChoice {
+        background-color: $mint-cream;
+        border-radius: 25px;
+        text-align: center;
+        height: fit-content;
+        padding: 6px;
+
+        .eventsPage__bottom__timeChoice__checkbox {
+          width: 24px;
+          height: 24px;
+          margin-top: 12px;
+
+        }
+
+        .eventsPage__bottom__timeChoice__text {}
+      }
     }
 
 

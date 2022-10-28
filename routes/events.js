@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
     }
   }
   //need to find a way to get the eventid by userid
- 
+
 
 
   eventQueries.getEventsDetails(id)
@@ -58,33 +58,37 @@ router.get('/:id', (req, res) => {
             for (let i = 0; i < dates.length; i++) {
               if (item.start_time.toString() === dates[i].start_time.toString()
                 && item.end_time.toString() === dates[i].end_time.toString()) {
-                dates[i].guests.push({name:item.name});
+                dates[i].guests.push({ name: item.name });
                 noMatch = !noMatch;
                 continue loop;
               }
             }
             if (noMatch) { // eslint-disable-next-line camelcase
-              dates.push({start_time:item.start_time, end_time:item.end_time,
-                guests: [{name:item.name}]});
+              dates.push({
+                start_time: item.start_time, end_time: item.end_time,
+                guests: [{ name: item.name }]
+              });
             }
           }
         }
         console.log(noShows);
         eventTimesQueries.getEventTimesByEventId(data.id)
           .then((eventTimesData) => {
+            console.log(eventTimesData, "test")
             res.render('event',
               {
+                isUserHost: true,
                 eventTimes: eventTimesData.map((time) => ({
                   id: time.id,
-                  startDate: moment(time.start_time, "MM-DD-YYYY HH:mm:ss A").format('MMMM Do YYYY'),
-                  endDate: moment(time.end_time, "MM-DD-YYYY HH:mm:ss A").format('MMMM Do YYYY'),
-                  startTime: moment(time.start_time, "MM-DD-YYYY HH:mm:ss A").format('h:mm a'),
-                  endTime: moment(time.end_time, "MM-DD-YYYY HH:mm:ss A").format('h:mm a')
+                  startDate: moment(time.start_time).format('dddd, MMMM Do YYYY'),
+                  endDate: moment(time.end_time).format('dddd, MMMM Do YYYY'),
+                  startTime: moment(time.start_time).format('h:mm a'),
+                  endTime: moment(time.end_time).format('h:mm a')
                 })),
                 event:
-              {
-                id: data.id, title: data.title, description: data.description,
-              },
+                {
+                  id: data.id, title: data.title, description: data.description, hostname: data.name, email: data.email, phone: data.phone
+                },
                 user: req.user,
                 guest: req.session.userId,
                 rvsp: dates.map((time) => ({
