@@ -55,10 +55,12 @@ router.get('/:id', (req, res) => {
               continue loop;
             }
             let noMatch = true;
-            for (let i = 0; i < dates.length; i++) {
-              if (item.start_time.toString() === dates[i].start_time.toString()
-                && item.end_time.toString() === dates[i].end_time.toString()) {
-                dates[i].guests.push({ name: item.name });
+            for (let element of dates) {
+              console.log(item.start_time.toString() === element.start_time.toString()
+                && item.end_time.toString() === element.end_time.toString());
+              if (item.start_time.toString() === element.start_time.toString()
+                && item.end_time.toString() === element.end_time.toString()) {
+                element.guests.push({ name: item.name });
                 noMatch = !noMatch;
                 continue loop;
               }
