@@ -73,7 +73,10 @@ router.get('/:id', (req, res) => {
         }
         eventTimesQueries.getEventTimesByEventId(data.id)
           .then((eventTimesData) => {
+<<<<<<< HEAD
             console.log(eventTimesData, "test");
+=======
+>>>>>>> 35635bc350244f49256c17cac85e255aaafcb1f4
             res.render('event',
               {
                 isUserHost: true,
@@ -86,7 +89,7 @@ router.get('/:id', (req, res) => {
                 })),
                 event:
                 {
-                  id: data.id, title: data.title, description: data.description, hostname: data.name, email: data.email, phone: data.phone
+                  id: data.id, title: data.title, description: data.description, hostname: data.name, email: data.email, phone: data.phone, location: data.location
                 },
                 user: req.user,
                 guest: req.session.userId,

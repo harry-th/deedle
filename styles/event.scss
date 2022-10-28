@@ -65,12 +65,12 @@ body {
 
 
     .eventsPage__top__share {
-      border: solid blue 1px;
       background-color: $mint-cream;
       width: fit-content;
       margin: 0 auto;
       padding: 8px;
       border-radius: 25px;
+      margin-bottom: 40px;
 
       .eventsPage__top__share__title {
         text-align: center;
@@ -84,7 +84,7 @@ body {
         border-radius: 12px;
         border: solid tomato 2px;
         overflow: hidden;
-        width: 10%;
+        width: 100%;
         margin: 0 auto;
       }
     }
@@ -146,6 +146,7 @@ body {
           padding-left: 8px;
           padding-top: 10px;
           width: fit-content;
+          margin: 0 auto;
 
           .eventsPage__top__right__location__title {
             padding: 0px 12px;
@@ -158,6 +159,7 @@ body {
               padding: 0px 12px;
               border-radius: 12px;
               border: solid tomato 2px;
+              text-align: center;
 
 
               .eventsPage__top__right__location__details__list__item {
@@ -173,28 +175,52 @@ body {
 
     .eventsPage__bottom {
       display: flex;
-      justify-content: center;
-      min-height: 200px;
       width: 100%;
       margin-top: 100px;
+      justify-content: space-around;
 
-      .eventsPage__bottom__timeChoice {
-        background-color: $mint-cream;
-        border-radius: 25px;
-        text-align: center;
-        height: fit-content;
-        padding: 6px;
+      .eventsPage__bottom__left {
+        justify-content: center;
+        min-height: 200px;
+        width: 14%;
 
-        .eventsPage__bottom__timeChoice__checkbox {
-          width: 24px;
-          height: 24px;
-          margin-top: 12px;
+        .eventsPage__bottom__left__timeChoice {
+          background-color: $mint-cream;
+          border-radius: 25px;
+          text-align: center;
+          height: fit-content;
+          padding: 6px;
 
+          .eventsPage__bottom__left__timeChoice__checkbox {
+            width: 24px;
+            height: 24px;
+            margin-top: 12px;
+
+          }
+
+          .eventsPage__bottom__left__timeChoice__text {}
         }
+      }
 
-        .eventsPage__bottom__timeChoice__text {}
+
+    }
+
+    .eventsPage__bottom__right {
+      justify-content: center;
+      min-height: 200px;
+      background-color: $mint-cream;
+      border-radius: 25px;
+      text-align: center;
+      height: fit-content;
+      padding: 6px;
+      width: 14%;
+
+      .eventsPage__bottom__right__title {
+        padding-top: 18px;
+        margin: 0 auto;
       }
     }
+
 
 
   }
