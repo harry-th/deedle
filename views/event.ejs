@@ -64,13 +64,18 @@
                     <% } %>
                       <form method="post" action="/user/create">
                         <% if(guest && guest.contact.name===undefined) { %>
-                          <p>email </p>
-                          <input type="text" name='email' id="email" />
-                          <p>name</p>
-                          <input type="text" name="name" id="name" />
-                          <input type="hidden" name="eventId" value=<%=event.id%> />
-                          <input type="hidden" name="attending" value="true" id="attending" />
-                          <input type="hidden" name='timeId' value=<%=eventTimes[0].id%> />
+                          <p>Email </p>
+                          <input class="eventsPage__top__right__location__details__list" type="text" name='email'
+                            id="email" />
+                          <p>Name</p>
+                          <input class="eventsPage__top__right__location__details__list" type="text" name="name"
+                            id="name" />
+                          <input class="eventsPage__top__right__location__details__list" type="hidden" name="eventId"
+                            value=<%=event.id%> />
+                          <input class="eventsPage__top__right__location__details__list" type="hidden" name="attending"
+                            value="true" id="attending" />
+                          <input class="eventsPage__top__right__location__details__list" type="hidden" name='timeId'
+                            value=<%=eventTimes[0].id%> />
                           <button id="decline" formnovalidate>DECLINE</button>
                           <button>submit</button>
                           <% } else { %>
@@ -90,7 +95,7 @@
 
               <% for(const item of eventTimes) { %>
                 <div class="eventsPage__bottom__left__timeChoice">
-                  <input class="eventsPage__bottom__left__timeChoice__checkbox" type="checkbox" name=<%item.id%> />
+                  <input class="eventsPage__bottom__timeChoice__checkbox" type="checkbox" name=<%=item.id %> />
                   <% if(item.startDate===item.endDate) { %>
                     <div class="eventsPage__bottom__left__timeChoice__text">
                       <p>
@@ -108,8 +113,14 @@
 
                       </div>
                       <% } %>
+                        <% for(const guest of item.guests) { %>
+                          <div class="eventsPage__bottom__left__timeChoice__guest">
+                            <%= guest.name %>
+                          </div>
+                          <% } %>
                 </div>
                 <% } %>
+                  </form>
             </div>
             <div class="eventsPage__bottom__right">
               <h4 class="eventsPage__bottom__right__title">Not Attending</h4>

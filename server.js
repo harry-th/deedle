@@ -77,11 +77,11 @@ const eventTimesQueries = require('./db/queries/eventTimes');
 const inviteeQueries = require('./db/queries/invitees');
 const inviteeDates = require('./db/queries/invitees_dates');
 
-const {makeId} = require('./helper');
+const { makeId } = require('./helper');
 
 
 app.post('/user/create', (req, res) => {
-  let {name, email, eventId, attending, timeId } = req.body;
+  let { name, email, eventId, attending, timeId } = req.body;
   if (attending === 'false') {
     attending = false;
   } else {
@@ -108,23 +108,23 @@ app.post('/user/create', (req, res) => {
 });
 app.post('/createEvent', (req, res) => {
   let dates = [];
-  let {name, email, title, description, location} = req.body;
+  let { name, email, phone, title, description, location } = req.body;
   for (let item in req.body) {
     if (item.startsWith('dateStart')) {
       let end = item[item.length - 1] !== 't' ? 'dateEnd' + item[item.length - 1] : 'dateEnd';
-      dates.push({[item]: req.body[item], [end]:req.body[end]});
+      dates.push({ [item]: req.body[item], [end]: req.body[end] });
     }
   }
   let parameter = makeId();
   if (dates) {
-    eventQueries.createEvent(parameter, name, email, title, description, location).then((id) => {
-      eventTimesQueries.createEventTimes(id.id,dates);
-      
-      const accessToken = jwt.sign({name, email}, process.env.ACCESS_TOKEN_SECRET);
+    eventQueries.createEvent(parameter, name, email, title, description, location, phone).then((id) => {
+      eventTimesQueries.createEventTimes(id.id, dates);
+
+      const accessToken = jwt.sign({ name, email }, process.env.ACCESS_TOKEN_SECRET);
       res.redirect(`/events/${parameter}?AuthToken=${accessToken}`);
     });
   }
-  
+
 });
 
 

@@ -14,10 +14,10 @@ const getEventsDetails = (id) => {
       return data.rows[0];
     });
 };
-const createEvent = (parameter, name, email, title, description, location) => {
-  return db.query(`INSERT INTO events (parameter, name, email, title, description, location)
-  VALUES ($1, $2, $3, $4, $5, $6) returning id;`,
-    [parameter, name, email, title, description, location]).then(data => {
+const createEvent = (parameter, name, email, title, description, location, phone) => {
+  return db.query(`INSERT INTO events (parameter, name, email, title, description, location, phone)
+  VALUES ($1, $2, $3, $4, $5, $6, $7) returning id;`,
+    [parameter, name, email, title, description, location, phone]).then(data => {
       return data.rows[0];
     });
 };
