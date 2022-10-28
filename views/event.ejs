@@ -57,7 +57,6 @@
             <h3 class="eventsPage__top__right__location__title">Event Details & RSVP</h3>
             <div class="eventsPage__top__right__location__details">
              <% if(guest !== undefined) { %>
-              <%= noShows[0].name %>
               <p>Welcome back <%= guest.contact.name %></p>
               <% } %>
               <form method="post" action="/user/create">
