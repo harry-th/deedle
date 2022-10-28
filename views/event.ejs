@@ -93,76 +93,92 @@
               </div>
             </div>
           </div>
-          <div class="eventsPage__bottom">
-
-
-            <% for(const item of eventTimes) { %>
-              <div class="eventsPage__bottom__timeChoice">
-                <input class="eventsPage__bottom__timeChoice__checkbox" type="checkbox" name=<%=item.id %> />
-                <% if (item.startDate===item.endDate) { %>
-                  <div class="eventsPage__bottom__timeChoice__text">
-                    <p>
-                      <%= item.startDate %>
-                    </p>
-                    <p>from <%= item.startTime %> to <%= item.endTime %>
-                    </p>
+    </div>
+    <div class="eventsPage__top__right">
+      <div class="eventsPage__top__right__location">
+        <h3 class="eventsPage__top__right__location__title">Event Details & RSVP</h3>
+        <div class="eventsPage__top__right__location__details">
+          <% if(guest !==undefined) { %>
+            <%= noShows[0].name %>
+              <p>Welcome back <%= guest.contact.name %>
+              </p>
+              <% } %>
+                <form method="post" action="/user/create">
+                  <% if(guest && guest.contact.name===undefined) { %>
+                    <p>email </p>
+                    <input type="text" name='email' id="email" />
+                    <p>name</p>
+                    <input type="text" name="name" id="name" />
+                    <input type="hidden" name="eventId" value=<%=event.id%> />
+                    <input type="hidden" name="attending" value="true" id="attending" />
+                    <input type="hidden" name='timeId' value=<%=eventTimes[0].id%> />
+                    <button id="decline" formnovalidate>DECLINE</button>
+                    <button>submit</button>
                     <% } else { %>
-                      <p>
-                        <%= item.startDate %> at <%= item.startTime %> until <%= item.endDate %>
-                      </p>
-                  </div>
-                  <% } %>
+                      <ul class="eventsPage__top__right__location__details__list">
+                        <li class="eventsPage__top__right__location__details__list__item">
+                          <%= event.address %>
+                        </li>
+                        <li class="eventsPage__top__right__location__details__list__item">
+                          <%= event.city %>
+                        </li>
+                        <li class="eventsPage__top__right__location__details__list__item">
+                          <%= event.province %>
+                        </li>
+                        <li class="eventsPage__top__right__location__details__list__item">
+                          <%= event.post_code %> -->
+                            <% } %>
+        </div>
+        <% } %>
+
+          </form>
+          <% if (rvsp) { %>
+            <% for (let item of rvsp) { %>
+              <div>
+                <% if (item.startDate===item.endDate) { %>
+                  <p>on <%= item.startDate %>
+                  </p>
+                  <% } else { %>
+                    <p>
+                      <%= item.startDate %> until <%= item.endDate %>
+                    </p>
+                    <% } %>
+                      <% for (let guest of item.guests) { %>
+                        <p>
+                          <%= guest.name %>
+                        </p>
+                        <% } %>
               </div>
               <% } %>
+                <%} else { %>
+                  <p>no guests</p>
+                  <% } %>
+      </div>
+      <script>
+        $(document).ready(function () {
 
-                </form>
-                <% if (rvsp) { %>
-                  <% for (let item of rvsp) { %>
-                    <div>
-                      <% if (item.startDate===item.endDate) { %>
-                        <p>on <%= item.startDate %>
-                        </p>
-                        <% } else { %>
-                          <p>
-                            <%= item.startDate %> until <%= item.endDate %>
-                          </p>
-                          <% } %>
-                            <% for (let guest of item.guests) { %>
-                              <p>
-                                <%= guest.name %>
-                              </p>
-                              <% } %>
-                    </div>
-                    <% } %>
-                      <%} else { %>
-                        <p>no guests</p>
-                        <% } %>
-          </div>
-          <script>
-            $(document).ready(function () {
+          let name;
+          let email;
+          $('#decline').hide();
 
-              let name;
-              let email;
+          $('#name').on('change', function () {
+            name = $(this).val()
+          })
+          $('#email').on('change', function () {
+            email = $(this).val()
+          })
+          $('#name, #email').on('change', function () {
+            if (name && email) {
+              $('#decline').show();
+            } else {
               $('#decline').hide();
-
-              $('#name').on('change', function () {
-                name = $(this).val()
-              })
-              $('#email').on('change', function () {
-                email = $(this).val()
-              })
-              $('#name, #email').on('change', function () {
-                if (name && email) {
-                  $('#decline').show();
-                } else {
-                  $('#decline').hide();
-                }
-              })
-              $('#decline').on('click', () => {
-                $('#attending').val(false)
-              })
-            })
-          </script>
+            }
+          })
+          $('#decline').on('click', () => {
+            $('#attending').val(false)
+          })
+        })
+      </script>
     </div>
 </body>
 
