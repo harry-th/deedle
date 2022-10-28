@@ -8,6 +8,7 @@ CREATE TABLE events (
   parameter VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  phone VARCHAR(225),
   title VARCHAR(255) NOT NULL,
   description TEXT,
   location TEXT
