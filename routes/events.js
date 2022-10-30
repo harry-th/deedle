@@ -35,6 +35,7 @@ router.get("/:id", (req, res) => {
   } else {
     if (!req.session.userId) {
       req.session.userId = {
+        id: undefined,
         events: [id],
         contact: { name: undefined, email: undefined },
       };
@@ -93,11 +94,10 @@ router.get("/:id", (req, res) => {
         }),
         {}
       );
-
+console.log(req.session.userId)
       eventTimesQueries
         .getEventTimesByEventId(data.id)
         .then((eventTimesData) => {
-          console.log(JSON.stringify(dates));
           const eventTimes = eventTimesData.map((time) => {
             const key = `${moment(time.start_time).format(
               "MMMM Do YYYY"
@@ -113,9 +113,6 @@ router.get("/:id", (req, res) => {
               guests,
             };
           });
-
-          console.log(JSON.stringify({ eventTimes }));
-
           res.render("event", {
             isUserHost: true,
             eventTimes,

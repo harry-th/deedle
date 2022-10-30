@@ -58,18 +58,32 @@
               <div class="eventsPage__top__right__location">
                 <h3 class="eventsPage__top__right__location__title">Event Details & RSVP</h3>
                 <div class="eventsPage__top__right__location__details">
-                  <% if(guest !==undefined) { %>
-                    <p>Welcome back <%= guest.contact.name %>
-                    </p>
+                  <% if(guest?.contact.name !== undefined) { %>
+                    <p>Welcome back <%= guest.contact.name %></p>
+                    <button type="button" id="edit">EDIT</button>
                     <% } %>
                       <form method="post" action="/user/create">
-                        <% if(guest && guest.contact.name===undefined) { %>
+                        <% if(guest?.contact.name !== undefined) { %>
+                        <div class="editForm">
+                        <p>Name</p>
+                        <input class="eventsPage__top__right__location__details__list" type="text" name="name"
+                             />
+                             <input class="eventsPage__top__right__location__details__list" type="hidden" name="eventId"
+                            value=<%=event.id%> />
+                            <input class="eventsPage__top__right__location__details__list" type="hidden" name='timeId'
+                            value=<%=eventTimes[0].id%> />
+                            <input class="eventsPage__top__right__location__details__list" type="hidden" name='email'
+                            id="email" value=<%=guest.contact.email%> />
+                          </div>
+                          <% } %>
+                        <% if (guest && guest?.contact.name === undefined) { %>
                           <p>Email </p>
                           <input class="eventsPage__top__right__location__details__list" type="text" name='email'
                             id="email" />
                           <p>Name</p>
                           <input class="eventsPage__top__right__location__details__list" type="text" name="name"
                             id="name" />
+                            
                           <input class="eventsPage__top__right__location__details__list" type="hidden" name="eventId"
                             value=<%=event.id%> />
                           <input class="eventsPage__top__right__location__details__list" type="hidden" name="attending"
@@ -79,6 +93,8 @@
                           <button id="decline" formnovalidate>DECLINE</button>
                           <button>submit</button>
                           <% } else { %>
+                          <button class="editForm">submit</button>
+
                             <ul class="eventsPage__top__right__location__details__list">
                               <li class="eventsPage__top__right__location__details__list__item">
                                 <%= event.location%>
@@ -95,7 +111,12 @@
 
               <% for(const item of eventTimes) { %>
                 <div class="eventsPage__bottom__left__timeChoice">
+                  <% if (guest?.contact.name === undefined) { %>
                   <input class="eventsPage__bottom__timeChoice__checkbox" type="checkbox" name=<%=item.id %> />
+                  <%} else {%>
+                  <input class="editForm eventsPage__bottom__timeChoice__checkbox" type="checkbox" name=<%=item.id %> />
+                    <p>At</p>
+                    <% } %>
                   <% if(item.startDate===item.endDate) { %>
                     <div class="eventsPage__bottom__left__timeChoice__text">
                       <p>
@@ -134,7 +155,11 @@
 
           <script>
             $(document).ready(function () {
+              $('.editForm').hide()
+              $('#edit').on('click', () => {
+              $('.editForm').show()
 
+              })
               let name;
               let email;
               $('#decline').hide();

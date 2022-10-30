@@ -81,30 +81,36 @@ const { makeId } = require('./helper');
 
 
 app.post('/user/create', (req, res) => {
+
   let { name, email, eventId, attending, timeId } = req.body;
+  if (Array.isArray(name)) {
+    name = name.filter(item => item)[0]
+  }
   if (attending === 'false') {
     attending = false;
   } else {
     attending = true;
   }
+  if (req.session.userId?.contact?.name) {
+    console.log('deleting')
+    inviteeDates.deleteDates(req.session.userId.id, eventId)
+  }
   req.session.userId.contact.name = name;
   req.session.userId.contact.email = email;
-
-  inviteeQueries.createGuest(email, name).then((id) => {
+  console.log(name, email, eventId, attending, timeId)
+  let thing = inviteeQueries.createGuest(email, name).then((id) => {
+    console.log(id)
     for (const item in req.body) {
       if (!attending) {
-        inviteeDates.makeDate(eventId, id.id, timeId, false).then((id) => {
-          console.log(id);
-        });
+        inviteeDates.makeDate(eventId, id.id, timeId, false)
         break;
       } else if (Number(item) && req.body[item] === 'on') {
-        inviteeDates.makeDate(eventId, id.id, item, true).then((id) => {
-          console.log(id);
-        });
+        inviteeDates.makeDate(eventId, id.id, item, true)
       }
     }
+    req.session.userId.id =id.id
+     res.redirect(`back`);
   });
-  res.redirect(`back`);
 });
 app.post('/createEvent', (req, res) => {
   let dates = [];
