@@ -20,13 +20,9 @@ const getDateList = (id) => {
   });
 };
 
-const reSubmit = (inviteeId, eventId, eventTimeId, truth) => {
-  return db.query(`Delete * from invitees_dates where 
-  invitees.id = $1 and
-  event_id = $2;`, [inviteeId, eventId]).then(() => {
-    makeDate(eventId, inviteeId, eventTimeId, truth).then((data) => {
-      return data.rows[0];
-    });
-  });
+const deleteDates = (inviteeId, eventId) => {
+  return db.query(`Delete from invitees_dates where 
+  invitee_id = $1 and
+  event_id = $2;`, [inviteeId, eventId]);
 };
-module.exports = { makeDate, getDateList, reSubmit };
+module.exports = { makeDate, getDateList, deleteDates };

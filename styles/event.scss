@@ -160,6 +160,7 @@ body {
               border-radius: 12px;
               border: solid tomato 2px;
               text-align: center;
+              color: $off-white;
 
 
               .eventsPage__top__right__location__details__list__item {
@@ -180,7 +181,7 @@ body {
       justify-content: space-around;
 
       .eventsPage__bottom__left {
-        justify-content: center;
+        justify-content: space-around;
         flex-wrap: wrap;
         min-height: 200px;
         width: 50%;
